@@ -57,7 +57,13 @@
                              materialDesign:ButtonAssist.CornerRadius="15" BorderThickness="2" BorderBrush="#16596b" Background="#1d7d97"
                              Foreground="#eaf0f3" ToolTip="Войдите в свой аккаунт" Click="btnLogin_Click" Content="Войти" FontFamily="Roboto Medium">
                             </Button>
+                            <TextBlock HorizontalAlignment="Center" Margin="10">
+                                <Hyperlink x:Name="Registration" Foreground="#1d7d97" Cursor="Hand">
+                                    <TextBlock Text="Создать учетную запись" FontFamily="Roboto Medium"/>
+                                </Hyperlink>
+                            </TextBlock>
                         </StackPanel>
+                        
                     </StackPanel>
                 </StackPanel>
             </Border>
