@@ -30,12 +30,27 @@ namespace WPF_APP
 
         }
 
-        private void btnLogin_Click(object sender, RoutedEventArgs e)
+        private void btnLogIn_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+        //Завершить работу приложения
+        private void btnExit_Click(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Shutdown();
+        }
+        //Свернуть окно
+        private void btnMinimize_Click(object sender, RoutedEventArgs e)
+        {
+            WindowState = WindowState.Minimized;
+        }
+
+        private void hpRegistration_Click(object sender, RoutedEventArgs e)
         {
 
         }
 
-        private void btnExit_Click(object sender, RoutedEventArgs e)
+        private void hpCantLogIn_Click(object sender, RoutedEventArgs e)
         {
 
         }
