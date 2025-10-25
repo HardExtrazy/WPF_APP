@@ -44,10 +44,11 @@ namespace WPF_APP
         {
             WindowState = WindowState.Minimized;
         }
-
+        //Обработка нажатия кнопки "Создать аккаунт"
         private void hpRegistration_Click(object sender, RoutedEventArgs e)
         {
-
+            Window RegistrationForm = new RegistrationForm();
+            RegistrationForm.ShowDialog();         
         }
 
         private void hpCantLogIn_Click(object sender, RoutedEventArgs e)

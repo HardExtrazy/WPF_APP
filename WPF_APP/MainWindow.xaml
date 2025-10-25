@@ -14,11 +14,6 @@
         ResizeMode="NoResize">
     <Border  CornerRadius="20" BorderThickness="1" Background="#b4b6b5"  Margin="10">
         <Grid>
-            <Grid.Background>
-                <LinearGradientBrush StartPoint="0.1,0" EndPoint="0.9,1">
-                    <GradientStop Color="Transparent" Offset="1"/>
-                </LinearGradientBrush>
-            </Grid.Background>
             <Border  CornerRadius="20" BorderThickness="1" Background="#eaf0f3" Margin="10">
                 <StackPanel Orientation="Horizontal">
                     <StackPanel Width="350" HorizontalAlignment="Left">
@@ -48,7 +43,7 @@
                             <materialDesign:PackIcon Kind="Password" Width="30" Height="30"/>
                             <PasswordBox x:Name="txtPassword" Margin="10 0" Width="160" materialDesign:HintAssist.Hint="Введите пароль"
                              materialDesign:TextFieldAssist.UnderlineBrush="#1d7d97"  Foreground="Black" BorderBrush="Black" CaretBrush="Black"
-                             SelectionBrush="Black" Cursor="Pen"/>
+                             SelectionBrush="Black" Cursor="Pen" Style="{StaticResource MaterialDesignFloatingHintPasswordBox}"/>
                         </StackPanel>
                         <StackPanel HorizontalAlignment="Center" Margin="10 -5 0 0">
                             <CheckBox x:Name="checkBoxSaveUser" Content="Запомнить меня" FontFamily="Roboto Medium" BorderBrush="#16596b" Background="#1d7d97" ToolTip="Выберите, чтобы сохранить данные аккаунта для быстрого входа на этом устройстве" Width="210" Height="20"/>
