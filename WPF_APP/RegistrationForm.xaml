@@ -26,18 +26,30 @@
                         <TextBlock Text="Создайте свой аккаунт" Foreground="Black" TextAlignment="Center" FontSize="28" FontFamily="Segoe Print" Margin="10"/>
                     </StackPanel>
                     <Border CornerRadius="20" BorderThickness="1" Background="White"  Margin="10" Height="470" Width="520">
-                        <Grid>
-                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Width="260">
-                                
-                            </StackPanel>
-                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Width="260">
+                        <Grid Cursor="">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <TextBox Style="{StaticResource MaterialDesignOutlinedTextBox}" Width="200" Grid.Column="0" Grid.Row="0"
+                            BorderThickness="1" BorderBrush="Black" Margin="34,28,25,41" Foreground="Black" CaretBrush="Black" 
+                            SelectionBrush="Black" Text="123" Padding="2 3 0 0" FontFamily="Roboto Medium" materialDesign:TextFieldAssist.TextBoxViewMargin="2"
+                            materialDesign:TextFieldAssist.UnderlineBrush="#1d7d97" FontSize="14" />
+                            <TextBlock Text="Имя пользователя" FontSize="12" Foreground="Black" Margin="40,20,116,58" Grid.Column="0"
+                            Grid.Row="0" Background="White" FontFamily="Roboto Medium"/>
 
-                            </StackPanel>
 
                         </Grid>
                     </Border>
                 </StackPanel>
-                
+
             </Border>
         </Grid>
     </Border>
