@@ -12,13 +12,20 @@
         AllowsTransparency="True" 
         Background="Transparent" 
         ResizeMode="NoResize">
+    <Window.Resources>
+        <Style x:Key="CustomHyperlink" TargetType="Hyperlink">
+            <Setter Property="Foreground" Value="#1d7d97"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="TextDecorations" Value="None"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="TextDecorations" Value="Underline"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
     <Border  CornerRadius="20" BorderThickness="1" Background="#b4b6b5"  Margin="10">
         <Grid>
-            <Grid.Background>
-                <LinearGradientBrush StartPoint="0.1,0" EndPoint="0.9,1">
-                    <GradientStop Color="Transparent" Offset="1"/>
-                </LinearGradientBrush>
-            </Grid.Background>
             <Border  CornerRadius="20" BorderThickness="1" Background="#eaf0f3" Margin="10">
                 <StackPanel Orientation="Horizontal">
                     <StackPanel Width="350" HorizontalAlignment="Left">
@@ -36,18 +43,20 @@
                             </Button>
                         </StackPanel>
                         <StackPanel>
-                            <TextBlock Text="Вход пользователя" Foreground="Black" TextAlignment="Center" FontSize="28" FontFamily="Segoe Print" Margin="0 35"/>
+                            <TextBlock Text="Вход пользователя" Foreground="Black" TextAlignment="Center" FontSize="28" FontFamily="Segoe Print" Margin="0 35" Cursor=""/>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" Margin="-10" Width="200">
                             <materialDesign:PackIcon Kind="User" Width="30" Height="30"/>
                             <TextBox x:Name="txtUsername" Margin="10 0" Width="160" materialDesign:HintAssist.Hint="Введите имя пользователя"
-                             materialDesign:TextFieldAssist.UnderlineBrush="#1d7d97" Foreground="Black" BorderBrush="Black" CaretBrush="Black"
-                             SelectionBrush="Black" Cursor="Pen" />
+                             materialDesign:TextFieldAssist.UnderlineBrush="Black" Style="{StaticResource MaterialDesignTextBox}"
+                             Foreground="Black" BorderBrush="Black" CaretBrush="Black" 
+                             SelectionBrush="Black" Cursor="Pen"/>
                         </StackPanel>
-                        <StackPanel Orientation="Horizontal" Margin="20" Width="200" >
+                        <StackPanel Orientation="Horizontal" Margin="20" Width="200" Cursor="" >
                             <materialDesign:PackIcon Kind="Password" Width="30" Height="30"/>
                             <PasswordBox x:Name="txtPassword" Margin="10 0" Width="160" materialDesign:HintAssist.Hint="Введите пароль"
-                             materialDesign:TextFieldAssist.UnderlineBrush="#1d7d97"  Foreground="Black" BorderBrush="Black" CaretBrush="Black"
+                             materialDesign:TextFieldAssist.UnderlineBrush="Black" Style="{StaticResource MaterialDesignRevealPasswordBox}"
+                             Foreground="Black" BorderBrush="Black" CaretBrush="Black"
                              SelectionBrush="Black" Cursor="Pen"/>
                         </StackPanel>
                         <StackPanel HorizontalAlignment="Center" Margin="10 -5 0 0">
@@ -60,36 +69,15 @@
                              Foreground="#eaf0f3" ToolTip="Войдите в свой аккаунт" Click="btnLogIn_Click" Content="Войти" FontFamily="Roboto Medium">
                             </Button>
                             <TextBlock HorizontalAlignment="Center" Margin="10">
-                                <Hyperlink x:Name="Registration" Foreground="#1d7d97" Cursor="Hand" Click="hpRegistration_Click">
+                                <Hyperlink x:Name="Registration" Foreground="#1d7d97" Cursor="Hand" Click="hpRegistration_Click" Style="{StaticResource CustomHyperlink}">
                                     <TextBlock Text="Создать учетную запись" FontFamily="Roboto Medium"/>
-                                          <Hyperlink.Style>
-                                              <Style TargetType="Hyperlink">
-                                                <Setter Property="TextDecorations" Value="{x:Null}"/>               
-                                                   <Style.Triggers>
-                                                      <Trigger Property="IsMouseOver" Value="True">
-                                                        <Setter Property="TextDecorations" Value="Underline"/>
-                        
-                                                      </Trigger>
-                                                   </Style.Triggers>
-                                              </Style>
-                                          </Hyperlink.Style>
                                 </Hyperlink>
                             </TextBlock>
                             <TextBlock HorizontalAlignment="Center" Margin="-5">
-    <Hyperlink x:Name="CantLogIn" Foreground="#1d7d97" Cursor="Hand" Click="hpCantLogIn_Click">
-        <TextBlock Text="Забыли пароль?" FontFamily="Roboto Medium"/>
-              <Hyperlink.Style>
-                  <Style TargetType="Hyperlink">
-                    <Setter Property="TextDecorations" Value="{x:Null}"/>               
-                       <Style.Triggers>
-                          <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="TextDecorations" Value="Underline"/>                        
-                          </Trigger>
-                       </Style.Triggers>
-                  </Style>
-              </Hyperlink.Style>
-    </Hyperlink>
-</TextBlock>
+                              <Hyperlink x:Name="CantLogIn" Foreground="#1d7d97" Cursor="Hand" Click="hpCantLogIn_Click" Style="{StaticResource CustomHyperlink}">
+                                <TextBlock Text="Забыли пароль?" FontFamily="Roboto Medium"/>
+                              </Hyperlink>
+                            </TextBlock>
                         </StackPanel>
                     </StackPanel>
                 </StackPanel>

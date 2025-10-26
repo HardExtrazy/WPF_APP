@@ -22,3 +22,5 @@ A:\Visual_Studio\WPF_APP\WPF_APP\obj\Debug\WPF_APP.csproj.Up2Date
 A:\Visual_Studio\WPF_APP\WPF_APP\obj\Debug\WPF_APP.exe
 A:\Visual_Studio\WPF_APP\WPF_APP\obj\Debug\WPF_APP.pdb
 A:\Visual_Studio\WPF_APP\WPF_APP\obj\Debug\WPF_APP.exe.config
+A:\Visual_Studio\WPF_APP\WPF_APP\obj\Debug\RegistrationForm.g.cs
+A:\Visual_Studio\WPF_APP\WPF_APP\obj\Debug\RegistrationForm.baml
