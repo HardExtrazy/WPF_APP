@@ -38,14 +38,62 @@
                                 <RowDefinition/>
                                 <RowDefinition/>
                             </Grid.RowDefinitions>
+                            <!--Поле "Имя пользователя"-->
                             <TextBox Style="{StaticResource MaterialDesignOutlinedTextBox}" Width="200" Grid.Column="0" Grid.Row="0"
-                            BorderThickness="1" BorderBrush="Black" Margin="34,28,25,41" Foreground="Black" CaretBrush="Black" 
+                            BorderThickness="1" BorderBrush="#1d7d97" Margin="34,28,25,41" Foreground="Black" CaretBrush="Black" 
                             SelectionBrush="Black" Text="123" Padding="2 3 0 0" FontFamily="Roboto Medium" materialDesign:TextFieldAssist.TextBoxViewMargin="2"
-                            materialDesign:TextFieldAssist.UnderlineBrush="#1d7d97" FontSize="14" />
+                            materialDesign:TextFieldAssist.UnderlineBrush="#16596b" FontSize="14" x:Name="username"/>
                             <TextBlock Text="Имя пользователя" FontSize="12" Foreground="Black" Margin="40,20,116,58" Grid.Column="0"
                             Grid.Row="0" Background="White" FontFamily="Roboto Medium"/>
-
-
+                            <!--Поле "e-Mail"-->
+                            <TextBox Style="{StaticResource MaterialDesignOutlinedTextBox}" Width="200" Grid.Column="0" Grid.Row="1"
+                            BorderThickness="1" BorderBrush="#1d7d97" Margin="34,28,25,41" Foreground="Black" CaretBrush="Black" 
+                            SelectionBrush="Black" Text="123" Padding="2 3 0 0" FontFamily="Roboto Medium" materialDesign:TextFieldAssist.TextBoxViewMargin="2"
+                            materialDesign:TextFieldAssist.UnderlineBrush="#16596b" FontSize="14" x:Name="email"/>
+                            <TextBlock Text="E-Mail" FontSize="12" Foreground="Black" Margin="40,20,183,58" Grid.Column="0"
+                            Grid.Row="1" Background="White" FontFamily="Roboto Medium"/>
+                            <!--Поле "Phonenumber"-->
+                            <TextBox Style="{StaticResource MaterialDesignOutlinedTextBox}" Width="200" Grid.Column="0" Grid.Row="2"
+                            BorderThickness="1" BorderBrush="#1d7d97" Margin="34,28,25,41" Foreground="Black" CaretBrush="Black" 
+                            SelectionBrush="Black" Text="123" Padding="2 3 0 0" FontFamily="Roboto Medium" materialDesign:TextFieldAssist.TextBoxViewMargin="2"
+                            materialDesign:TextFieldAssist.UnderlineBrush="#16596b" FontSize="14" x:Name="phonenumber"/>
+                            <TextBlock Text="Номер телефона" FontSize="12" Foreground="Black" Margin="40,20,125,58" Grid.Column="0"
+                            Grid.Row="2" Background="White" FontFamily="Roboto Medium"/>
+                            <!--Поле "Firstname"-->
+                            <TextBox Style="{StaticResource MaterialDesignOutlinedTextBox}" Width="200" Grid.Column="1" Grid.Row="0"
+                            BorderThickness="1" BorderBrush="#1d7d97" Margin="34,28,25,41" Foreground="Black" CaretBrush="Black" 
+                            SelectionBrush="Black" Text="123" Padding="2 3 0 0" FontFamily="Roboto Medium" materialDesign:TextFieldAssist.TextBoxViewMargin="2"
+                            materialDesign:TextFieldAssist.UnderlineBrush="#16596b" FontSize="14" x:Name="firstname"/>
+                            <TextBlock Text="Настоящее имя" FontSize="12" Foreground="Black" Margin="40,20,132,58" Grid.Column="1"
+                            Grid.Row="0" Background="White" FontFamily="Roboto Medium"/>
+                            <!--Поле "Lastname"-->
+                            <TextBox Style="{StaticResource MaterialDesignOutlinedTextBox}" Width="200" Grid.Column="1" Grid.Row="1"
+                            BorderThickness="1" BorderBrush="#1d7d97" Margin="34,28,25,41" Foreground="Black" CaretBrush="Black" 
+                            SelectionBrush="Black" Text="123" Padding="2 3 0 0" FontFamily="Roboto Medium" materialDesign:TextFieldAssist.TextBoxViewMargin="2"
+                            materialDesign:TextFieldAssist.UnderlineBrush="#16596b" FontSize="14" x:Name="lastname"/>
+                            <TextBlock Text="Фамилия" FontSize="12" Foreground="Black" Margin="40,20,168,58" Grid.Column="1"
+                            Grid.Row="1" Background="White" FontFamily="Roboto Medium"/>
+                            <!--Поле "Surename"-->
+                            <TextBox Style="{StaticResource MaterialDesignOutlinedTextBox}" Width="200" Grid.Column="1" Grid.Row="2"
+                            BorderThickness="1" BorderBrush="#1d7d97" Margin="34,28,25,41" Foreground="Black" CaretBrush="Black" 
+                            SelectionBrush="Black" Text="123" Padding="2 3 0 0" FontFamily="Roboto Medium" materialDesign:TextFieldAssist.TextBoxViewMargin="2"
+                            materialDesign:TextFieldAssist.UnderlineBrush="#16596b" FontSize="14" x:Name="surename"/>
+                            <TextBlock Text="Отчество" FontSize="12" Foreground="Black" Margin="40,20,166,58" Grid.Column="1"
+                            Grid.Row="2" Background="White" FontFamily="Roboto Medium"/>
+                            <!--Поле "Password"-->
+                            <PasswordBox Style="{StaticResource MaterialDesignOutlinedPasswordBox}" Width="200" Grid.Column="1" Grid.Row="3"
+                            BorderThickness="1" BorderBrush="#1d7d97" Margin="34,28,25,41" Foreground="Black" CaretBrush="Black" 
+                            SelectionBrush="Black" Padding="2 3 0 0" FontFamily="Roboto Medium" materialDesign:TextFieldAssist.TextBoxViewMargin="2"
+                            materialDesign:TextFieldAssist.UnderlineBrush="#16596b" FontSize="14" x:Name="password"/>
+                            <TextBlock Text="Пароль" FontSize="12" Foreground="Black" Margin="40,20,176,58" Grid.Column="1"
+                             Grid.Row="3" Background="White" FontFamily="Roboto Medium"/>
+                            <!--Поле "PasswordRepiat"-->
+                            <PasswordBox Style="{StaticResource MaterialDesignOutlinedPasswordBox}" Width="200" Grid.Column="1" Grid.Row="4"
+                            BorderThickness="1" BorderBrush="#1d7d97" Margin="34,28,25,41" Foreground="Black" CaretBrush="Black" 
+                            SelectionBrush="Black" Padding="2 3 0 0" FontFamily="Roboto Medium" materialDesign:TextFieldAssist.TextBoxViewMargin="2"
+                            materialDesign:TextFieldAssist.UnderlineBrush="#16596b" FontSize="14" x:Name="passwordrepiat"/>
+                            <TextBlock Text="Повторите пароль" FontSize="12" Foreground="Black" Margin="40,20,115,58" Grid.Column="1"
+                            Grid.Row="4" Background="White" FontFamily="Roboto Medium"/>
                         </Grid>
                     </Border>
                 </StackPanel>
