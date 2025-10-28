@@ -81,19 +81,26 @@
                             <TextBlock Text="Отчество" FontSize="12" Foreground="Black" Margin="40,20,166,58" Grid.Column="1"
                             Grid.Row="2" Background="White" FontFamily="Roboto Medium"/>
                             <!--Поле "Password"-->
-                            <PasswordBox Style="{StaticResource MaterialDesignOutlinedPasswordBox}" Width="200" Grid.Column="1" Grid.Row="3"
+                            <PasswordBox Style="{StaticResource MaterialDesignOutlinedRevealPasswordBox}" Width="200" Grid.Column="1" Grid.Row="3"
                             BorderThickness="1" BorderBrush="#1d7d97" Margin="34,28,25,41" Foreground="Black" CaretBrush="Black" 
-                            SelectionBrush="Black" Padding="2 3 0 0" FontFamily="Roboto Medium" materialDesign:TextFieldAssist.TextBoxViewMargin="2"
+                            SelectionBrush="Black" Padding="2 3 3 0" FontFamily="Roboto Medium" materialDesign:TextFieldAssist.TextBoxViewMargin="2"
                             materialDesign:TextFieldAssist.UnderlineBrush="#16596b" FontSize="14" x:Name="password"/>
                             <TextBlock Text="Пароль" FontSize="12" Foreground="Black" Margin="40,20,176,58" Grid.Column="1"
                              Grid.Row="3" Background="White" FontFamily="Roboto Medium"/>
                             <!--Поле "PasswordRepiat"-->
-                            <PasswordBox Style="{StaticResource MaterialDesignOutlinedPasswordBox}" Width="200" Grid.Column="1" Grid.Row="4"
+                            <PasswordBox Style="{StaticResource MaterialDesignOutlinedRevealPasswordBox}" Width="200" Grid.Column="1" Grid.Row="4"
                             BorderThickness="1" BorderBrush="#1d7d97" Margin="34,28,25,41" Foreground="Black" CaretBrush="Black" 
-                            SelectionBrush="Black" Padding="2 3 0 0" FontFamily="Roboto Medium" materialDesign:TextFieldAssist.TextBoxViewMargin="2"
+                            SelectionBrush="Black" Padding="2 3 3 0" FontFamily="Roboto Medium" materialDesign:TextFieldAssist.TextBoxViewMargin="2"
                             materialDesign:TextFieldAssist.UnderlineBrush="#16596b" FontSize="14" x:Name="passwordrepiat"/>
                             <TextBlock Text="Повторите пароль" FontSize="12" Foreground="Black" Margin="40,20,115,58" Grid.Column="1"
                             Grid.Row="4" Background="White" FontFamily="Roboto Medium"/>
+                            <!--Поле "DateOfBirth"-->
+                            <DatePicker Grid.Column="0"  Grid.Row="3" Width="200" BorderThickness="1" BorderBrush="#1d7d97" Margin="34,28,25,41" Foreground="Black"
+                             FontFamily="Roboto Medium" Style="{StaticResource MaterialDesignOutlinedDatePicker}" Padding="2 3 3 0" materialDesign:TextFieldAssist.TextBoxViewMargin="2"
+                              materialDesign:TextFieldAssist.UnderlineBrush="#16596b" FontSize="14"/>
+
+                            <TextBlock Text="Дата рождения" FontSize="12" Foreground="Black" Margin="40,20,133,58" Grid.Column="0"
+                            Grid.Row="3" Background="White" FontFamily="Roboto Medium"/>
                         </Grid>
                     </Border>
                 </StackPanel>
