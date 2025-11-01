@@ -6,106 +6,136 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPF_APP"
         mc:Ignorable="d"
-        Title="RegistrationForm" Height="650" Width="500" MinHeight="450" MinWidth="600"
+        Title="RegistrationForm" Height="450" Width="400" MinHeight="450" MinWidth="350"
         WindowStartupLocation="CenterScreen" 
         WindowStyle="None" 
         AllowsTransparency="True" 
         Background="Transparent" 
         ResizeMode="NoResize">
-    <Border CornerRadius="20" BorderThickness="1" Background="#b4b6b5"  Margin="10">
-        <Grid>
-            <Border CornerRadius="20" BorderThickness="1" Background="#eaf0f3" Margin="10">
-                <StackPanel Width="550" Height="600">
-                    <StackPanel HorizontalAlignment="Right" Margin="10 5">
-                        <Button x:Name ="Exit" Style="{StaticResource MaterialDesignFloatingActionButton}" Background="#1d7d97" Foreground="#16596b"
-                            ToolTip="Закрыть" Click="btnExit_Click" BorderBrush="#16596b" Cursor="Hand" Width="25" Height="25">
-                            <materialDesign:PackIcon Kind="Close" Foreground="#eaf0f3" Width="15" Height="15"/>
+    <Grid>
+      <Border
+          CornerRadius="20"
+          BorderThickness="1"
+          Background="#b4b6b5"
+          Margin="10">
+        <Border
+            CornerRadius="20"
+            BorderThickness="1"
+            Background="#eaf0f3"
+            Margin="10">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <StackPanel
+                        Orientation="Horizontal"
+                        HorizontalAlignment="Right"
+                        Grid.Column="2">
+                        <Button x:Name ="Exit" Style="{StaticResource MaterialDesignFloatingActionButton}"
+                                Background="#1d7d97"
+                                Foreground="#16596b"
+                                ToolTip="Закрыть"
+                                Click="btnExit_Click"
+                                BorderBrush="#16596b"
+                                Cursor="Hand" Width="25"
+                                Height="25"
+                                Margin="10 0 10 10">
+                            <materialDesign:PackIcon
+                                Kind="Close"
+                                Foreground="#eaf0f3"
+                                Width="15" Height="15"/>
                         </Button>
                     </StackPanel>
-                    <StackPanel>
-                        <TextBlock Text="Создайте свой аккаунт" Foreground="Black" TextAlignment="Center" FontSize="28" FontFamily="Segoe Print" Margin="10"/>
+                    <StackPanel
+                        Grid.Row="1"
+                        Grid.Column="1"
+                        Margin="0,10,0,90">
+                        <Label
+                            Content="ОКНО РЕГИСТРАЦИИ"
+                            FontFamily="Segoe Print"
+                            FontSize="15"
+                            Padding="0"
+                            Margin="-1.5 10 0 5"
+                            HorizontalAlignment="Left"
+                            Foreground="{StaticResource MaterialDesignShadowBrush}"/>
+                        <TextBox
+                            x:Name="Login"
+                            Style = "{StaticResource MaterialDesignOutlinedTextBox}"
+                            materialDesign:TextFieldAssist.LeadingIcon="User"
+                            materialDesign:HintAssist.Hint="Имя пользователя"
+                            materialDesign:HintAssist.Foreground="Black"
+                            materialDesign:HintAssist.FontFamily="Arial"
+                            materialDesign:TextFieldAssist.UnderlineBrush="Black"                            
+                            materialDesign:TextFieldAssist.HasLeadingIcon="True"
+                            materialDesign:TextFieldAssist.NewSpecHighlightingEnabled="False"
+                            CaretBrush="Black"
+                            SelectionBrush="Black"
+                            Padding="5 5 5 5"
+                            Margin="0 5 0 10"/>
+                        <TextBox
+                            x:Name="Email"
+                            Style = "{StaticResource MaterialDesignOutlinedTextBox}"
+                            materialDesign:TextFieldAssist.LeadingIcon="Mailbox"
+                            materialDesign:HintAssist.Hint="Электронная почта"
+                            materialDesign:HintAssist.Foreground="Black"
+                            materialDesign:HintAssist.FontFamily="Arial"
+                            materialDesign:TextFieldAssist.UnderlineBrush="Black"                            
+                            materialDesign:TextFieldAssist.HasLeadingIcon="True"
+                            materialDesign:TextFieldAssist.NewSpecHighlightingEnabled="False"
+                            CaretBrush="Black"
+                            SelectionBrush="Black"
+                            Padding="5 5 5 5"
+                            Margin="0 0 0 10"/>
+                        <PasswordBox
+                            x:Name="Password"
+                            Style = "{StaticResource MaterialDesignOutlinedRevealPasswordBox}"
+                            materialDesign:TextFieldAssist.LeadingIcon="PasswordAdd"
+                            materialDesign:HintAssist.Hint="Пароль"
+                            materialDesign:HintAssist.Foreground="Black"
+                            materialDesign:HintAssist.FontFamily="Arial"
+                            materialDesign:TextFieldAssist.UnderlineBrush="Black"                            
+                            materialDesign:TextFieldAssist.HasLeadingIcon="True"
+                            materialDesign:TextFieldAssist.NewSpecHighlightingEnabled="False"
+                            CaretBrush="Black"
+                            SelectionBrush="Black"
+                            Padding="5 5 5 5"
+                            Margin="0 0 0 10"/>
+                        <PasswordBox
+                            x:Name="repiatPassword"
+                            Style = "{StaticResource MaterialDesignOutlinedRevealPasswordBox}"
+                            materialDesign:TextFieldAssist.LeadingIcon="PasswordAddOutline"
+                            materialDesign:HintAssist.Hint="Повторите пароль"
+                            materialDesign:HintAssist.Foreground="Black"
+                            materialDesign:HintAssist.FontFamily="Arial"
+                            materialDesign:TextFieldAssist.UnderlineBrush="Black"                            
+                            materialDesign:TextFieldAssist.HasLeadingIcon="True"
+                            materialDesign:TextFieldAssist.NewSpecHighlightingEnabled="False"
+                            CaretBrush="Black"
+                            SelectionBrush="Black"
+                            Padding="5 5 5 5"
+                            Margin="0 0 0 10"/>
+                        <ComboBox
+                            x:Name="Role"
+                            Style="{DynamicResource MaterialDesignOutlinedComboBox}"
+                            materialDesign:TextFieldAssist.LeadingIcon="Woman"
+                            materialDesign:HintAssist.Hint="Должность"
+                            materialDesign:HintAssist.Foreground="Black"
+                            materialDesign:HintAssist.FontFamily="Arial"
+                            materialDesign:TextFieldAssist.UnderlineBrush="Black"                            
+                            materialDesign:TextFieldAssist.HasLeadingIcon="True"
+                            materialDesign:TextFieldAssist.NewSpecHighlightingEnabled="False"                            
+                            Padding="5 5 5 5"
+                            Margin="0 0 0 10"/>
                     </StackPanel>
-                    <Border CornerRadius="20" BorderThickness="1" Background="White"  Margin="10" Height="470" Width="520">
-                        <Grid Cursor="">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition/>
-                                <ColumnDefinition/>
-                            </Grid.ColumnDefinitions>
-                            <Grid.RowDefinitions>
-                                <RowDefinition/>
-                                <RowDefinition/>
-                                <RowDefinition/>
-                                <RowDefinition/>
-                                <RowDefinition/>
-                            </Grid.RowDefinitions>
-                            <!--Поле "Имя пользователя"-->
-                            <TextBox Style="{StaticResource MaterialDesignOutlinedTextBox}" Width="200" Grid.Column="0" Grid.Row="0"
-                            BorderThickness="1" BorderBrush="#1d7d97" Margin="34,28,25,41" Foreground="Black" CaretBrush="Black" 
-                            SelectionBrush="Black" Text="123" Padding="2 3 0 0" FontFamily="Roboto Medium" materialDesign:TextFieldAssist.TextBoxViewMargin="2"
-                            materialDesign:TextFieldAssist.UnderlineBrush="#16596b" FontSize="14" x:Name="username"/>
-                            <TextBlock Text="Имя пользователя" FontSize="12" Foreground="Black" Margin="40,20,116,58" Grid.Column="0"
-                            Grid.Row="0" Background="White" FontFamily="Roboto Medium"/>
-                            <!--Поле "e-Mail"-->
-                            <TextBox Style="{StaticResource MaterialDesignOutlinedTextBox}" Width="200" Grid.Column="0" Grid.Row="1"
-                            BorderThickness="1" BorderBrush="#1d7d97" Margin="34,28,25,41" Foreground="Black" CaretBrush="Black" 
-                            SelectionBrush="Black" Text="123" Padding="2 3 0 0" FontFamily="Roboto Medium" materialDesign:TextFieldAssist.TextBoxViewMargin="2"
-                            materialDesign:TextFieldAssist.UnderlineBrush="#16596b" FontSize="14" x:Name="email"/>
-                            <TextBlock Text="E-Mail" FontSize="12" Foreground="Black" Margin="40,20,183,58" Grid.Column="0"
-                            Grid.Row="1" Background="White" FontFamily="Roboto Medium"/>
-                            <!--Поле "Phonenumber"-->
-                            <TextBox Style="{StaticResource MaterialDesignOutlinedTextBox}" Width="200" Grid.Column="0" Grid.Row="2"
-                            BorderThickness="1" BorderBrush="#1d7d97" Margin="34,28,25,41" Foreground="Black" CaretBrush="Black" 
-                            SelectionBrush="Black" Text="123" Padding="2 3 0 0" FontFamily="Roboto Medium" materialDesign:TextFieldAssist.TextBoxViewMargin="2"
-                            materialDesign:TextFieldAssist.UnderlineBrush="#16596b" FontSize="14" x:Name="phonenumber"/>
-                            <TextBlock Text="Номер телефона" FontSize="12" Foreground="Black" Margin="40,20,125,58" Grid.Column="0"
-                            Grid.Row="2" Background="White" FontFamily="Roboto Medium"/>
-                            <!--Поле "Firstname"-->
-                            <TextBox Style="{StaticResource MaterialDesignOutlinedTextBox}" Width="200" Grid.Column="1" Grid.Row="0"
-                            BorderThickness="1" BorderBrush="#1d7d97" Margin="34,28,25,41" Foreground="Black" CaretBrush="Black" 
-                            SelectionBrush="Black" Text="123" Padding="2 3 0 0" FontFamily="Roboto Medium" materialDesign:TextFieldAssist.TextBoxViewMargin="2"
-                            materialDesign:TextFieldAssist.UnderlineBrush="#16596b" FontSize="14" x:Name="firstname"/>
-                            <TextBlock Text="Настоящее имя" FontSize="12" Foreground="Black" Margin="40,20,132,58" Grid.Column="1"
-                            Grid.Row="0" Background="White" FontFamily="Roboto Medium"/>
-                            <!--Поле "Lastname"-->
-                            <TextBox Style="{StaticResource MaterialDesignOutlinedTextBox}" Width="200" Grid.Column="1" Grid.Row="1"
-                            BorderThickness="1" BorderBrush="#1d7d97" Margin="34,28,25,41" Foreground="Black" CaretBrush="Black" 
-                            SelectionBrush="Black" Text="123" Padding="2 3 0 0" FontFamily="Roboto Medium" materialDesign:TextFieldAssist.TextBoxViewMargin="2"
-                            materialDesign:TextFieldAssist.UnderlineBrush="#16596b" FontSize="14" x:Name="lastname"/>
-                            <TextBlock Text="Фамилия" FontSize="12" Foreground="Black" Margin="40,20,168,58" Grid.Column="1"
-                            Grid.Row="1" Background="White" FontFamily="Roboto Medium"/>
-                            <!--Поле "Surename"-->
-                            <TextBox Style="{StaticResource MaterialDesignOutlinedTextBox}" Width="200" Grid.Column="1" Grid.Row="2"
-                            BorderThickness="1" BorderBrush="#1d7d97" Margin="34,28,25,41" Foreground="Black" CaretBrush="Black" 
-                            SelectionBrush="Black" Text="123" Padding="2 3 0 0" FontFamily="Roboto Medium" materialDesign:TextFieldAssist.TextBoxViewMargin="2"
-                            materialDesign:TextFieldAssist.UnderlineBrush="#16596b" FontSize="14" x:Name="surename"/>
-                            <TextBlock Text="Отчество" FontSize="12" Foreground="Black" Margin="40,20,166,58" Grid.Column="1"
-                            Grid.Row="2" Background="White" FontFamily="Roboto Medium"/>
-                            <!--Поле "Password"-->
-                            <PasswordBox Style="{StaticResource MaterialDesignOutlinedRevealPasswordBox}" Width="200" Grid.Column="1" Grid.Row="3"
-                            BorderThickness="1" BorderBrush="#1d7d97" Margin="34,28,25,41" Foreground="Black" CaretBrush="Black" 
-                            SelectionBrush="Black" Padding="2 3 3 0" FontFamily="Roboto Medium" materialDesign:TextFieldAssist.TextBoxViewMargin="2"
-                            materialDesign:TextFieldAssist.UnderlineBrush="#16596b" FontSize="14" x:Name="password"/>
-                            <TextBlock Text="Пароль" FontSize="12" Foreground="Black" Margin="40,20,176,58" Grid.Column="1"
-                             Grid.Row="3" Background="White" FontFamily="Roboto Medium"/>
-                            <!--Поле "PasswordRepiat"-->
-                            <PasswordBox Style="{StaticResource MaterialDesignOutlinedRevealPasswordBox}" Width="200" Grid.Column="1" Grid.Row="4"
-                            BorderThickness="1" BorderBrush="#1d7d97" Margin="34,28,25,41" Foreground="Black" CaretBrush="Black" 
-                            SelectionBrush="Black" Padding="2 3 3 0" FontFamily="Roboto Medium" materialDesign:TextFieldAssist.TextBoxViewMargin="2"
-                            materialDesign:TextFieldAssist.UnderlineBrush="#16596b" FontSize="14" x:Name="passwordrepiat"/>
-                            <TextBlock Text="Повторите пароль" FontSize="12" Foreground="Black" Margin="40,20,115,58" Grid.Column="1"
-                            Grid.Row="4" Background="White" FontFamily="Roboto Medium"/>
-                            <!--Поле "DateOfBirth"-->
-                            <DatePicker Grid.Column="0"  Grid.Row="3" Width="200" BorderThickness="1" BorderBrush="#1d7d97" Margin="34,28,25,41" Foreground="Black"
-                             FontFamily="Roboto Medium" Style="{StaticResource MaterialDesignOutlinedDatePicker}" Padding="2 3 3 0" materialDesign:TextFieldAssist.TextBoxViewMargin="2"
-                              materialDesign:TextFieldAssist.UnderlineBrush="#16596b" FontSize="14"/>
-
-                            <TextBlock Text="Дата рождения" FontSize="12" Foreground="Black" Margin="40,20,133,58" Grid.Column="0"
-                            Grid.Row="3" Background="White" FontFamily="Roboto Medium"/>
-                        </Grid>
-                    </Border>
-                </StackPanel>
-
-            </Border>
-        </Grid>
-    </Border>
+                    
+                </Grid>
+        </Border>
+      </Border>
+    </Grid>
 </Window>

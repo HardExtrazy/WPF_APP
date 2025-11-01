@@ -28,5 +28,10 @@ namespace WPF_APP
         {
             Close();
         }
+
+        private void TextBox_ImageFailed(object sender, ExceptionRoutedEventArgs e)
+        {
+
+        }
     }
 }
