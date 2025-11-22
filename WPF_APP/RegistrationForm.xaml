@@ -49,34 +49,25 @@
                                                      Width="15" Height="15"/>
                         </Button>
                     </StackPanel>
-                    <StackPanel Grid.Column="1"
-                                Margin="0,0,0,60"
-                                Grid.Row="1">
-                        <TextBlock Text="ОКНО РЕГИСТРАЦИИ"
-                                   FontFamily="Segoe Print"
-                                   FontSize="15"
-                                   Padding="0"
-                                   Foreground="{StaticResource MaterialDesignShadowBrush}"
-                                   Height="25"
-                                   HorizontalAlignment="Center"/>
-                    </StackPanel>
-                    <StackPanel Grid.Column="1"
-                                Margin="0,0,0,60"
-                                Grid.Row="1">
-                        <Label Content="ОКНО РЕГИСТРАЦИИ"
-                               FontFamily="Segoe Print"
-                               FontSize="15"
-                               Padding="0"
-                               Foreground="{StaticResource MaterialDesignShadowBrush}"
-                               Height="25"
-                               HorizontalAlignment="Center"/>
-                        <TextBlock Text="Шаг 1"
-                                   FontFamily="Segoe Print"
-                                   FontSize="14"
-                                   HorizontalAlignment="Center"/>
-                        <StackPanel Orientation="Horizontal"
+                    <Label Grid.Row="1"
+                           Grid.Column="1"                       
+                           Content="ОКНО РЕГИСТРАЦИИ"
+                           FontFamily="Segoe Print"
+                           FontSize="15"
+                           Padding="0"
+                           Foreground="{StaticResource MaterialDesignShadowBrush}"
+                           HorizontalAlignment="Center" Margin="0,10,0,321"/>
+                    <TabControl Grid.Row="1"
+                                Grid.ColumnSpan="3">
+                        <TabItem Visibility="Collapsed">
+                            <StackPanel Margin="35">
+                                <TextBlock Text="Шаг 1"
+                                           FontFamily="Segoe Print"
+                                           FontSize="14"
+                                           HorizontalAlignment="Center"/>
+                                <StackPanel Orientation="Horizontal"
                                     Width="250">
-                            <TextBox x:Name="Login"
+                                    <TextBox x:Name="Login"
                                      Style = "{StaticResource MaterialDesignOutlinedTextBox}"
                                      materialDesign:TextFieldAssist.LeadingIcon="User"
                                      materialDesign:HintAssist.Hint="Имя пользователя"
@@ -90,15 +81,15 @@
                                      Padding="5 5 5 5"
                                      Margin="20 5 0 10"                            
                                      Width="215"/>
-                            <materialDesign:PackIcon x:Name="validationLoginIcon"
+                                    <materialDesign:PackIcon x:Name="validationLoginIcon"
                                                      Visibility="Hidden"
                                                      Width="15"
                                                      VerticalAlignment="Center"
                                                      Margin="0 0 0 5"/>
-                        </StackPanel>
-                        <StackPanel Orientation="Horizontal"
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal"
                                     Width="250">
-                            <TextBox x:Name="Email"
+                                    <TextBox x:Name="Email"
                                      Style = "{StaticResource MaterialDesignOutlinedTextBox}"
                                      materialDesign:TextFieldAssist.LeadingIcon="Mailbox"
                                      materialDesign:HintAssist.Hint="Электронная почта"
@@ -112,15 +103,15 @@
                                      Padding="5 5 5 5"
                                      Margin="20 5 0 10"                            
                                      Width="215"/>
-                            <materialDesign:PackIcon x:Name="validationEmailIcon"
+                                    <materialDesign:PackIcon x:Name="validationEmailIcon"
                                                      Visibility="Hidden"
                                                      Width="15"
                                                      VerticalAlignment="Center"
-                                                     Margin="0 0 0 5"/>      
-                        </StackPanel>
-                        <StackPanel Orientation="Horizontal"
+                                                     Margin="0 0 0 5"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal"
                                     Width="250">
-                            <PasswordBox x:Name="Password"
+                                    <PasswordBox x:Name="Password"
                                          Style = "{StaticResource MaterialDesignOutlinedRevealPasswordBox}"
                                          materialDesign:TextFieldAssist.LeadingIcon="PasswordAdd"
                                          materialDesign:HintAssist.Hint="Пароль"
@@ -134,15 +125,15 @@
                                          Padding="5 5 5 5"
                                          Margin="20 5 0 10"                            
                                          Width="215"/>
-                            <materialDesign:PackIcon x:Name="validationPasswordIcon"
+                                    <materialDesign:PackIcon x:Name="validationPasswordIcon"
                                                      Visibility="Hidden"
                                                      Width="15"
                                                      VerticalAlignment="Center"
                                                      Margin="0 0 0 5"/>
-                        </StackPanel>
-                        <StackPanel Orientation="Horizontal"
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal"
                                     Width="250">
-                            <PasswordBox x:Name="repiatPassword"
+                                    <PasswordBox x:Name="repiatPassword"
                                          Style = "{StaticResource MaterialDesignOutlinedRevealPasswordBox}"
                                          materialDesign:TextFieldAssist.LeadingIcon="PasswordAddOutline"
                                          materialDesign:HintAssist.Hint="Повторите пароль"
@@ -156,13 +147,13 @@
                                          Padding="5 5 5 5"
                                          Margin="20 5 0 10"                            
                                          Width="215"/>
-                            <materialDesign:PackIcon x:Name="validationRepiatPasswordIcon"
+                                    <materialDesign:PackIcon x:Name="validationRepiatPasswordIcon"
                                                      Visibility="Hidden"
                                                      Width="15"
                                                      VerticalAlignment="Center"
                                                      Margin="0 0 0 5"/>
-                        </StackPanel>
-                        <Button x:Name="btnNext"
+                                </StackPanel>
+                                <Button x:Name="btnNext"
                                 Width="100"
                                 Height="40"
                                 Style="{StaticResource MaterialDesignRaisedButton}"
@@ -176,7 +167,12 @@
                                 Content="Далее"
                                 FontFamily="Roboto Medium"
                                 Margin="10"/>
-                    </StackPanel>
+                            </StackPanel>
+                        </TabItem>
+                        <TabItem Visibility="Collapsed">
+
+                        </TabItem>
+                    </TabControl>
                 </Grid>
             </Border>
         </Border>
