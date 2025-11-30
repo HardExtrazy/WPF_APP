@@ -13,6 +13,10 @@
         Background="Transparent" 
         ResizeMode="NoResize">
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="449*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
         <Border CornerRadius="20"
                 BorderThickness="1"
                 Background="#b4b6b5"
@@ -56,9 +60,10 @@
                            FontSize="15"
                            Padding="0"
                            Foreground="{StaticResource MaterialDesignShadowBrush}"
-                           HorizontalAlignment="Center" Margin="0,10,0,321"/>
+                           HorizontalAlignment="Center" Margin="0,10,0,320"/>
                     <TabControl Grid.Row="1"
-                                Grid.ColumnSpan="3">
+                                Grid.ColumnSpan="3"
+                                Margin="0,0,0,-30">
                         <TabItem Visibility="Collapsed">
                             <StackPanel Margin="35">
                                 <TextBlock Text="Шаг 1"
@@ -67,7 +72,7 @@
                                            HorizontalAlignment="Center"/>
                                 <StackPanel Orientation="Horizontal"
                                     Width="250">
-                                    <TextBox x:Name="Login"
+                                    <TextBox x:Name="login"
                                      Style = "{StaticResource MaterialDesignOutlinedTextBox}"
                                      materialDesign:TextFieldAssist.LeadingIcon="User"
                                      materialDesign:HintAssist.Hint="Имя пользователя"
@@ -89,7 +94,7 @@
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal"
                                     Width="250">
-                                    <TextBox x:Name="Email"
+                                    <TextBox x:Name="email"
                                      Style = "{StaticResource MaterialDesignOutlinedTextBox}"
                                      materialDesign:TextFieldAssist.LeadingIcon="Mailbox"
                                      materialDesign:HintAssist.Hint="Электронная почта"
@@ -111,7 +116,7 @@
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal"
                                     Width="250">
-                                    <PasswordBox x:Name="Password"
+                                    <PasswordBox x:Name="password"
                                          Style = "{StaticResource MaterialDesignOutlinedRevealPasswordBox}"
                                          materialDesign:TextFieldAssist.LeadingIcon="PasswordAdd"
                                          materialDesign:HintAssist.Hint="Пароль"
@@ -153,6 +158,28 @@
                                                      VerticalAlignment="Center"
                                                      Margin="0 0 0 5"/>
                                 </StackPanel>
+                                <StackPanel Orientation="Horizontal"
+                                            Width="250">
+                                    <TextBox x:Name="phoneNumber"
+                                             Style = "{StaticResource MaterialDesignOutlinedTextBox}"
+                                             materialDesign:TextFieldAssist.LeadingIcon="Phone"
+                                             materialDesign:HintAssist.Hint="Номер телефона"
+                                             materialDesign:HintAssist.Foreground="Black"
+                                             materialDesign:HintAssist.FontFamily="Arial"
+                                             materialDesign:TextFieldAssist.UnderlineBrush="Black"                            
+                                             materialDesign:TextFieldAssist.HasLeadingIcon="True"
+                                             materialDesign:TextFieldAssist.NewSpecHighlightingEnabled="False"
+                                             CaretBrush="Black"
+                                             SelectionBrush="Black"
+                                             Padding="5 5 5 5"
+                                             Margin="20 5 0 10"                            
+                                             Width="215"/>
+                                    <materialDesign:PackIcon x:Name="validationPhoneNumberIcon"
+                                                             Visibility="Hidden"
+                                                             Width="15"
+                                                             VerticalAlignment="Center"
+                                                             Margin="0 0 0 5"/>
+                                </StackPanel>
                                 <Button x:Name="btnNext"
                                 Width="100"
                                 Height="40"
@@ -170,7 +197,139 @@
                             </StackPanel>
                         </TabItem>
                         <TabItem Visibility="Collapsed">
-
+                            <StackPanel Margin="35">
+                                <TextBlock Text="Шаг 2"
+                                           FontFamily="Segoe Print"
+                                           FontSize="14"
+                                           HorizontalAlignment="Center"/>
+                                <StackPanel Orientation="Horizontal"
+                                            Width="250">
+                                    <TextBox x:Name="firstName"
+                                             Style = "{StaticResource MaterialDesignOutlinedTextBox}"
+                                             materialDesign:TextFieldAssist.LeadingIcon="AccountBadge"
+                                             materialDesign:HintAssist.Hint="Имя"
+                                             materialDesign:HintAssist.Foreground="Black"
+                                             materialDesign:HintAssist.FontFamily="Arial"
+                                             materialDesign:TextFieldAssist.UnderlineBrush="Black"                            
+                                             materialDesign:TextFieldAssist.HasLeadingIcon="True"
+                                             materialDesign:TextFieldAssist.NewSpecHighlightingEnabled="False"
+                                             CaretBrush="Black"
+                                             SelectionBrush="Black"
+                                             Padding="5 5 5 5"
+                                             Margin="20 5 0 10"                            
+                                             Width="215"/>
+                                    <materialDesign:PackIcon x:Name="validationFirstNameIcon"
+                                                             Visibility="Hidden"
+                                                             Width="15"
+                                                             VerticalAlignment="Center"
+                                                             Margin="0 0 0 5"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal"
+                                            Width="250">
+                                    <TextBox x:Name="lastName"
+                                             Style = "{StaticResource MaterialDesignOutlinedTextBox}"
+                                             materialDesign:TextFieldAssist.LeadingIcon="AccountDownload"
+                                             materialDesign:HintAssist.Hint="Фамилия"
+                                             materialDesign:HintAssist.Foreground="Black"
+                                             materialDesign:HintAssist.FontFamily="Arial"
+                                             materialDesign:TextFieldAssist.UnderlineBrush="Black"                            
+                                             materialDesign:TextFieldAssist.HasLeadingIcon="True"
+                                             materialDesign:TextFieldAssist.NewSpecHighlightingEnabled="False"
+                                             CaretBrush="Black"
+                                             SelectionBrush="Black"
+                                             Padding="5 5 5 5"
+                                             Margin="20 5 0 10"                            
+                                             Width="215"/>
+                                    <materialDesign:PackIcon x:Name="validationLastNameIcon"
+                                                             Visibility="Hidden"
+                                                             Width="15"
+                                                             VerticalAlignment="Center"
+                                                             Margin="0 0 0 5"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal"
+                                            Width="250">
+                                    <PasswordBox x:Name="dateOfBirth"
+                                                 Style = "{StaticResource MaterialDesignOutlinedRevealPasswordBox}"
+                                                 materialDesign:TextFieldAssist.LeadingIcon="PasswordAddOutline"
+                                                 materialDesign:HintAssist.Hint="Повторите пароль"
+                                                 materialDesign:HintAssist.Foreground="Black"
+                                                 materialDesign:HintAssist.FontFamily="Arial"
+                                                 materialDesign:TextFieldAssist.UnderlineBrush="Black"                            
+                                                 materialDesign:TextFieldAssist.HasLeadingIcon="True"
+                                                 materialDesign:TextFieldAssist.NewSpecHighlightingEnabled="False"
+                                                 CaretBrush="Black"
+                                                 SelectionBrush="Black"
+                                                 Padding="5 5 5 5"
+                                                 Margin="20 5 0 10"                            
+                                                 Width="215"/>
+                                    <materialDesign:PackIcon x:Name="validationDateOfBirthIcon"
+                                                             Visibility="Hidden"
+                                                             Width="15"
+                                                             VerticalAlignment="Center"
+                                                             Margin="0 0 0 5"/>
+                                </StackPanel>
+                                <Border CornerRadius="5"
+                                        BorderThickness="1"
+                                        BorderBrush="#484a4a"                                       
+                                        Width="215"
+                                        Height="32"                                       
+                                        Margin="5 0 0 5">
+                                    <StackPanel Orientation="Horizontal"
+                                                Width="250"
+                                                HorizontalAlignment="Center">
+                                    
+                                    <RadioButton x:Name="maleRadio"
+                                                  Content="Мужской"
+                                                  GroupName="genderGroup"
+                                                  Style="{StaticResource MaterialDesignRadioButton}"
+                                                  Margin="20 5 0 5"
+                                                  Padding="0 0 0 0"/>
+                                    <RadioButton x:Name="femaleRadio"
+                                                  Content="Женский"
+                                                  GroupName="genderGroup"
+                                                  Style="{StaticResource MaterialDesignRadioButton}"
+                                                  Margin="20 5 0 5"
+                                                  Padding="0 0 0 0"/>
+                                    
+                                </StackPanel>
+                                </Border>
+                                <StackPanel Orientation="Horizontal"
+                                            Width="250">
+                                    <TextBox x:Name="role"
+                                             Style = "{StaticResource MaterialDesignOutlinedTextBox}"
+                                             materialDesign:TextFieldAssist.LeadingIcon="Phone"
+                                             materialDesign:HintAssist.Hint="Номер телефона"
+                                             materialDesign:HintAssist.Foreground="Black"
+                                             materialDesign:HintAssist.FontFamily="Arial"
+                                             materialDesign:TextFieldAssist.UnderlineBrush="Black"                            
+                                             materialDesign:TextFieldAssist.HasLeadingIcon="True"
+                                             materialDesign:TextFieldAssist.NewSpecHighlightingEnabled="False"
+                                             CaretBrush="Black"
+                                             SelectionBrush="Black"
+                                             Padding="5 5 5 5"
+                                             Margin="20 5 0 10"                            
+                                             Width="215"/>
+                                    <materialDesign:PackIcon x:Name="validationRoleIcon"
+                                                             Visibility="Hidden"
+                                                             Width="15"
+                                                             VerticalAlignment="Center"
+                                                             Margin="0 0 0 5"/>
+                                </StackPanel>
+                                <Button x:Name="btnCreate"
+                                        Width="100"
+                                        Height="40"
+                                        Style="{StaticResource MaterialDesignRaisedButton}"
+                                        materialDesign:ButtonAssist.CornerRadius="15"
+                                        BorderThickness="2"
+                                        BorderBrush="#16596b"
+                                        Background="#1d7d97"
+                                        Foreground="#eaf0f3"
+                                        ToolTip="Продолжить регистрацию"
+                                        Click="btnNext_Click"
+                                        Content="Далее"
+                                        FontFamily="Roboto Medium"
+                                        Margin="10"/>
+                            </StackPanel>
                         </TabItem>
                     </TabControl>
                 </Grid>
