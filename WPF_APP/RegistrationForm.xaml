@@ -6,39 +6,351 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPF_APP"
         mc:Ignorable="d"
-        Title="RegistrationForm" Height="650" Width="500" MinHeight="450" MinWidth="600"
+        Title="RegistrationForm" Height="550" Width="500" MinHeight="450" MinWidth="350"
         WindowStartupLocation="CenterScreen" 
         WindowStyle="None" 
         AllowsTransparency="True" 
         Background="Transparent" 
-        ResizeMode="NoResize">
-    <Border CornerRadius="20" BorderThickness="1" Background="#b4b6b5"  Margin="10">
-        <Grid>
-            <Border CornerRadius="20" BorderThickness="1" Background="#eaf0f3" Margin="10">
-                <StackPanel Width="550" Height="600">
-                    <StackPanel HorizontalAlignment="Right" Margin="10 5">
-                        <Button x:Name ="Exit" Style="{StaticResource MaterialDesignFloatingActionButton}" Background="#1d7d97" Foreground="#16596b"
-                            ToolTip="Закрыть" Click="btnExit_Click" BorderBrush="#16596b" Cursor="Hand" Width="25" Height="25">
-                            <materialDesign:PackIcon Kind="Close" Foreground="#eaf0f3" Width="15" Height="15"/>
+        ResizeMode="NoResize"
+        xmlns:converters="clr-namespace:MaterialDesignThemes.Wpf.Converters;assembly=MaterialDesignThemes.Wpf"
+        xmlns:wpf="clr-namespace:MaterialDesignThemes.Wpf;assembly=MaterialDesignThemes.Wpf">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="449*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <!--Внешняя граница-->
+        <Border CornerRadius="20"
+                BorderThickness="1"
+                Background="#c9c2cd"
+                Margin="10">
+            <!--Внутреннее окно-->
+            <Border CornerRadius="20"
+                    BorderThickness="1"
+                    Background="#fdf6fe"
+                    Margin="10">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <StackPanel Orientation="Horizontal"
+                                HorizontalAlignment="Left"
+                                Grid.Column="1"
+                                Grid.ColumnSpan="2"
+                                Margin="370,0,0,0"
+                                Width="48">
+                        <!--Кнопка "Закрыть окно"-->
+                        <Button x:Name ="Exit"                               
+                                Style="{StaticResource MaterialDesignFloatingActionButton}"
+                                Background="#ebddff"                               
+                                ToolTip="Закрыть"
+                                Click="btnExit_Click"
+                                BorderBrush="#e9def8"
+                                Cursor="Hand"
+                                Width="25"
+                                Height="25"
+                                Margin="10 0 10 10">
+                            <materialDesign:PackIcon Kind="Close"
+                                                     Foreground="#4f3d74"
+                                                     Width="15"
+                                                     Height="15" Cursor=""/>
                         </Button>
                     </StackPanel>
-                    <StackPanel>
-                        <TextBlock Text="Создайте свой аккаунт" Foreground="Black" TextAlignment="Center" FontSize="28" FontFamily="Segoe Print" Margin="10"/>
-                    </StackPanel>
-                    <Border CornerRadius="20" BorderThickness="1" Background="White"  Margin="10" Height="470" Width="520">
-                        <Grid>
-                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Width="260">
-                                
+                    <Label Grid.Row="1"
+                           Grid.Column="1"                       
+                           Content="ОКНО РЕГИСТРАЦИИ"
+                           FontFamily="Segoe Print"
+                           FontSize="15"
+                           Padding="0"                          
+                           HorizontalAlignment="Center"
+                           Margin="0,10,0,320"/>
+                    <TabControl x:Name="registrarion"
+                                HorizontalAlignment="Center"
+                                Grid.Row="1"                               
+                                LayoutTransform="1.2 0 0 1.2 0 0"
+                                Grid.Column="1"
+                                Margin="0,0,0,-5" SelectionChanged="registrarion_SelectionChanged_3">
+                        <!--Панель первого этапа регистрации-->
+                        <TabItem x:Name="stepOne"
+                                 Visibility="Collapsed">
+                            <StackPanel Margin="35">
+                                <TextBlock Text="Шаг 1"
+                                           FontFamily="Segoe Print"
+                                           FontSize="14"
+                                           HorizontalAlignment="Center"/>
+                                <!--Ввод имени пользователя-->
+                                <StackPanel Orientation="Horizontal"
+                                            Width="250">
+                                    <TextBox x:Name="login"
+                                             Width="215"
+                                             Style = "{StaticResource MaterialDesignOutlinedTextBox}"
+                                             materialDesign:TextFieldAssist.LeadingIcon="User"                                    
+                                             materialDesign:HintAssist.Hint="Имя пользователя"
+                                             materialDesign:HintAssist.HintPaddingBrush="#fdf6fe"
+                                             materialDesign:HintAssist.FontFamily="Arial"
+                                             materialDesign:TextFieldAssist.HasLeadingIcon="True"                                             
+                                             Background="#ebddff"
+                                             BorderBrush="#e9def8"                                                                                                                                                                                                                                                                                          
+                                             Padding="5 5 5 5"
+                                             Margin="20 5 0 10"/>
+                                </StackPanel>
+                                <!--Ввод электронной почты-->
+                                <StackPanel Orientation="Horizontal"
+                                    Width="250">
+                                    <TextBox x:Name="email"
+                                             Width="215" 
+                                     Style = "{StaticResource MaterialDesignOutlinedTextBox}"
+                                     materialDesign:TextFieldAssist.LeadingIcon="Mailbox"
+                                     materialDesign:HintAssist.Hint="Электронная почта"
+                                     materialDesign:HintAssist.HintPaddingBrush="#fdf6fe"
+                                     materialDesign:HintAssist.FontFamily="Arial"
+                                     materialDesign:TextFieldAssist.HasLeadingIcon="True"                                   
+                                     Background="#ebddff"
+                                     BorderBrush="#e9def8"                                                                                                                                                                                                                                                                                          
+                                     Padding="5 5 5 5"
+                                     Margin="20 5 0 10"/>
+                                </StackPanel>
+                                <!--Ввод пароля-->
+                                <StackPanel Orientation="Horizontal"
+                                    Width="250">
+                                    <PasswordBox x:Name="password"
+                                                 Width="215"
+                                                 Style = "{StaticResource MaterialDesignOutlinedRevealPasswordBox}"
+                                                 materialDesign:TextFieldAssist.LeadingIcon="PasswordAdd"
+                                                 materialDesign:HintAssist.Hint="Пароль"   
+                                                 materialDesign:HintAssist.HintPaddingBrush="#fdf6fe"
+                                                 materialDesign:HintAssist.FontFamily="Arial"                           
+                                                 materialDesign:TextFieldAssist.HasLeadingIcon="True"
+                                                 materialDesign:TextFieldAssist.NewSpecHighlightingEnabled="False"
+                                                 Background="#ebddff"
+                                                 BorderBrush="#e9def8"                                                                                                                                                                                                                                                                                          
+                                                 Padding="5 5 5 5"
+                                                 Margin="20 5 0 10"/>                                                                                                    
+                                </StackPanel>
+                                <!--Повторный ввод пароля-->
+                                <StackPanel Orientation="Horizontal"
+                                    Width="250">
+                                    <PasswordBox x:Name="repiatPassword"
+                                                 Width="215"
+                                                 Style = "{StaticResource MaterialDesignOutlinedRevealPasswordBox}"
+                                                 materialDesign:TextFieldAssist.LeadingIcon="PasswordAddOutline"
+                                                 materialDesign:HintAssist.Hint="Повторите пароль"
+                                                 materialDesign:HintAssist.HintPaddingBrush="#fdf6fe"
+                                                 materialDesign:HintAssist.FontFamily="Arial"                           
+                                                 materialDesign:TextFieldAssist.HasLeadingIcon="True"
+                                                 materialDesign:TextFieldAssist.NewSpecHighlightingEnabled="False"
+                                                 Background="#ebddff"
+                                                 BorderBrush="#e9def8"                                                                                                                                                                                                                                                                                          
+                                                 Padding="5 5 5 5"
+                                                 Margin="20 5 0 10"/>
+                                </StackPanel>
+                                <!--Ввод номера телефона-->
+                                <StackPanel Orientation="Horizontal"
+                                            Width="250">
+                                    <TextBox x:Name="phoneNumber"
+                                             Width="215"
+                                             Style = "{StaticResource MaterialDesignOutlinedTextBox}"
+                                             materialDesign:TextFieldAssist.LeadingIcon="Phone"
+                                             materialDesign:HintAssist.Hint="Номер телефона"
+                                             materialDesign:HintAssist.HintPaddingBrush="#fdf6fe"
+                                             materialDesign:HintAssist.FontFamily="Arial"                           
+                                             materialDesign:TextFieldAssist.HasLeadingIcon="True"
+                                             materialDesign:TextFieldAssist.NewSpecHighlightingEnabled="False"
+                                             Background="#ebddff"
+                                             BorderBrush="#e9def8"                                                                                                                                                                                                                                                                                          
+                                             Padding="5 5 5 5"
+                                             Margin="20 5 0 10"/>
+                                </StackPanel>
+                                <!--Кнопка "Далее"-->
+                                <Button x:Name="btnNext"
+                                        Width="100"
+                                        Height="40"
+                                        Content="Далее"
+                                        ToolTip="Продолжить регистрацию"
+                                        FontFamily="Roboto Medium"
+                                        Style="{StaticResource MaterialDesignRaisedButton}"
+                                        materialDesign:ButtonAssist.CornerRadius="15"                              
+                                        Foreground="#fdf6fe"                                                                                                  
+                                        Click="btnNext_Click"                              
+                                        Margin="10"/>
                             </StackPanel>
-                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Width="260">
-
+                        </TabItem>
+                        <!--Панель второго этапа регистрации-->
+                        <TabItem x:Name="stepTwo"
+                                 Visibility="Collapsed">
+                            <StackPanel Margin="35">
+                                <TextBlock Text="Шаг 2"
+                                           FontFamily="Segoe Print"
+                                           FontSize="14"
+                                           HorizontalAlignment="Center"/>
+                                <StackPanel Orientation="Horizontal"
+                                            Width="250">
+                                    <!--Ввод имени-->
+                                    <TextBox x:Name="firstName"
+                                             Width="215"
+                                             Style = "{StaticResource MaterialDesignOutlinedTextBox}"
+                                             materialDesign:TextFieldAssist.LeadingIcon="AccountBadge"
+                                             materialDesign:HintAssist.Hint="Имя"
+                                             materialDesign:HintAssist.HintPaddingBrush="#fdf6fe"
+                                             materialDesign:HintAssist.FontFamily="Arial"                           
+                                             materialDesign:TextFieldAssist.HasLeadingIcon="True"
+                                             materialDesign:TextFieldAssist.NewSpecHighlightingEnabled="False"
+                                             Background="#ebddff"
+                                             BorderBrush="#e9def8"                                                                                                                                                                                                                                                                                          
+                                             Padding="5 5 5 5"
+                                             Margin="20 5 0 10"/>
+                                </StackPanel>
+                                <!--Ввод пароля-->
+                                <StackPanel Orientation="Horizontal"
+                                            Width="250">
+                                    <TextBox x:Name="lastName"
+                                             Width="215"
+                                             Style = "{StaticResource MaterialDesignOutlinedTextBox}"
+                                             materialDesign:TextFieldAssist.LeadingIcon="AccountDownload"
+                                             materialDesign:HintAssist.Hint="Фамилия"
+                                             materialDesign:HintAssist.HintPaddingBrush="#fdf6fe"
+                                             materialDesign:HintAssist.FontFamily="Arial"                           
+                                             materialDesign:TextFieldAssist.HasLeadingIcon="True"
+                                             materialDesign:TextFieldAssist.NewSpecHighlightingEnabled="False"
+                                             Background="#ebddff"
+                                             BorderBrush="#e9def8"                                                                                                                                                                                                                                                                                          
+                                             Padding="5 5 5 5"
+                                             Margin="20 5 0 10"/>
+                                </StackPanel>
+                                <!--Выбор даты рождения-->
+                                <StackPanel Orientation="Horizontal"
+                                            Width="250">
+                                    <Border Background="#ebddff"
+                                            BorderBrush="#e9def8"                                            
+                                            CornerRadius="4"
+                                            Margin="20 5 0 10">
+                                        <DatePicker x:Name="dateOfBirth"
+                                                 Width="215"
+                                                 Language="ru-RU"
+                                                 Style = "{StaticResource MaterialDesignOutlinedDatePicker}"
+                                                 materialDesign:TextFieldAssist.LeadingIcon="DateRange"
+                                                 materialDesign:HintAssist.Hint="Дата рождения"
+                                                 materialDesign:HintAssist.HintPaddingBrush="#fdf6fe"
+                                                 materialDesign:HintAssist.FontFamily="Arial"                           
+                                                 materialDesign:TextFieldAssist.HasLeadingIcon="True"                                            
+                                                 BorderBrush="#e9def8"                                                                                                                                                                                                                                                                                         
+                                                 Padding="5 5 5 5">
+                                        </DatePicker>
+                                    </Border>
+                                <!--Выбор пола-->
+                                </StackPanel>
+                                <GroupBox Header="Гендер" 
+                                          FontSize="8"
+                                          FontFamily="Arial"                                         
+                                          BorderBrush="#e9def8"                                         
+                                          BorderThickness="1"
+                                          Margin="0 5 0 10">
+                                    <GroupBox.Template>
+                                        <ControlTemplate TargetType="GroupBox">
+                                            <Grid>
+                                                <Border Background="#ebddff"
+                                                        BorderBrush="{TemplateBinding BorderBrush}"
+                                                        BorderThickness="{TemplateBinding BorderThickness}"
+                                                        CornerRadius="4"
+                                                        Padding="0"
+                                                        Width="215"
+                                                        Height="32"
+                                                        Margin="5 0 0 0">
+                                                    <ContentPresenter/>
+                                                </Border>
+                                                <Border Background="#fdf6fe"                                                      
+                                                        Padding="5,1"
+                                                        HorizontalAlignment="Left"                                                        
+                                                        Margin="49,-8,0,28">
+                                                    <TextBlock Text="{TemplateBinding Header}"
+                                                               Foreground="#67568a"  
+                                                               FontSize="8"
+                                                               FontFamily="Arial"/>
+                                                </Border>
+                                            </Grid>
+                                        </ControlTemplate>
+                                    </GroupBox.Template>
+                                    <StackPanel Orientation="Horizontal">
+                                        <RadioButton x:Name="Male"
+                                                     Content="Мужской"
+                                                     FontFamily="Arial"
+                                                     FontSize="10"
+                                                     GroupName="Gender"
+                                                     Margin="10 0"                                                    
+                                                     materialDesign:RadioButtonAssist.RadioButtonSize="14"/>
+                                        <RadioButton x:Name="Female"
+                                                     Content="Женский"
+                                                     FontFamily="Arial"
+                                                     FontSize="10"
+                                                     GroupName="Gender"
+                                                     Margin="10 0"                                                    
+                                                     materialDesign:RadioButtonAssist.RadioButtonSize="14"/>
+                                    </StackPanel>
+                                </GroupBox>
+                                <!--Выбор должности-->
+                                <StackPanel Orientation="Horizontal"
+                                            Width="250">
+                                    <ComboBox x:Name="role"
+                                              Width="215"
+                                              Style = "{StaticResource MaterialDesignOutlinedComboBox}"
+                                              materialDesign:TextFieldAssist.LeadingIcon="HatFedora"
+                                              materialDesign:HintAssist.Hint="Должность"
+                                              materialDesign:HintAssist.HintPaddingBrush="#fdf6fe"
+                                              materialDesign:HintAssist.FontFamily="Arial"                           
+                                              materialDesign:TextFieldAssist.HasLeadingIcon="True"
+                                              materialDesign:TextFieldAssist.NewSpecHighlightingEnabled="False"
+                                              Background="#ebddff"
+                                              BorderBrush="#e9def8"                                                                                                                                                                                                                                                                                          
+                                              Padding="5 5 5 5"
+                                              Margin="20 5 0 10">
+                                        <ComboBoxItem x:Name="director"
+                                                      Content="Директор"
+                                                      FontFamily="Arial"/>
+                                        <ComboBoxItem x:Name="deputyHead"
+                                                      Content="Завуч"
+                                                      FontFamily="Arial"/>
+                                        <ComboBoxItem x:Name="teacher"
+                                                      Content="Учитель"
+                                                      FontFamily="Arial"/>
+                                    </ComboBox>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                    <!--Кнопка "Назад"-->
+                                    <Button x:Name="btnBack"
+                                            Width="100"
+                                            Height="40"
+                                            Style="{StaticResource MaterialDesignRaisedButton}"
+                                            materialDesign:ButtonAssist.CornerRadius="15"
+                                            Foreground="#fdf6fe" 
+                                            ToolTip="Вернуться к шагу 1"
+                                            Click="btnBack_Click"
+                                            Content="Назад"
+                                            FontFamily="Roboto Medium"
+                                            Margin="10"/>
+                                    <!--Кнопка "Создать"-->
+                                    <Button x:Name="btnCreate"
+                                            Width="100"
+                                            Height="40"
+                                            Style="{StaticResource MaterialDesignRaisedButton}"
+                                            Foreground="#fdf6fe" 
+                                            materialDesign:ButtonAssist.CornerRadius="15"                                            
+                                            ToolTip="Создать аккаунт"
+                                            Click="btnCreate_Click"
+                                            Content="Создать"
+                                            FontFamily="Roboto Medium"
+                                            Margin="10"/>
+                                </StackPanel>
                             </StackPanel>
-
-                        </Grid>
-                    </Border>
-                </StackPanel>
-                
+                        </TabItem>
+                    </TabControl>
+                </Grid>
             </Border>
-        </Grid>
-    </Border>
+        </Border>
+    </Grid>
 </Window>

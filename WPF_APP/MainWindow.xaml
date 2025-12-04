@@ -12,78 +12,173 @@
         AllowsTransparency="True" 
         Background="Transparent" 
         ResizeMode="NoResize">
+    <!--Стиль для гипессылки-->
     <Window.Resources>
-        <Style x:Key="CustomHyperlink" TargetType="Hyperlink">
-            <Setter Property="Foreground" Value="#1d7d97"/>
-            <Setter Property="Cursor" Value="Hand"/>
-            <Setter Property="TextDecorations" Value="None"/>
+        <Style x:Key="CustomHyperlink"
+               TargetType="Hyperlink">
+            <Setter Property="Cursor"
+                    Value="Hand"/>
+            <Setter Property="TextDecorations"
+                    Value="None"/>
             <Style.Triggers>
-                <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="TextDecorations" Value="Underline"/>
+                <Trigger Property="IsMouseOver"
+                         Value="True">
+                    <Setter Property="TextDecorations"
+                            Value="Underline"/>
                 </Trigger>
             </Style.Triggers>
         </Style>
     </Window.Resources>
-    <Border  CornerRadius="20" BorderThickness="1" Background="#b4b6b5"  Margin="10">
+    <!--Внешняя граница-->
+    <Border  CornerRadius="20"
+             BorderThickness="1"
+             Background="#c9c2cd"
+             Margin="10">
         <Grid>
-            <Border  CornerRadius="20" BorderThickness="1" Background="#eaf0f3" Margin="10">
+            <!--Внутреннее окно-->
+            <Border CornerRadius="20"
+                    BorderThickness="1"
+                    Background="#fdf6fe"
+                    Margin="10">
                 <StackPanel Orientation="Horizontal">
-                    <StackPanel Width="350" HorizontalAlignment="Left">
-                        <Image Source="Img/LogIn.png" Height="402"/>
+                    <!--Изображение-->
+                    <StackPanel Width="350"
+                                HorizontalAlignment="Left">
+                        <Image Source="Img/LogIn.png"
+                               Height="402"/>
                     </StackPanel>
-                    <StackPanel Width="407" Margin="10 0" Height="406">
-                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="20 5">
-                            <Button x:Name ="Minimize" Style="{StaticResource MaterialDesignFloatingActionButton}" Background="#1d7d97" Foreground="#16596b"
-                             ToolTip="Свернуть" Click="btnMinimize_Click" BorderBrush="#16596b" Cursor="Hand" Width="25" Height="25" Margin="0 0 5 0">
-                                <materialDesign:PackIcon Kind="Minimize" Foreground="#eaf0f3" Width="15" Height="15"/>
+                    <StackPanel Width="407"
+                                Margin="10 0"
+                                Height="406">
+                        <StackPanel Orientation="Horizontal"
+                                    HorizontalAlignment="Right"
+                                    Margin="20 5">
+                            <!--Кнопка "Свернуть окно"-->
+                            <Button x:Name ="Minimize"
+                                    Style="{StaticResource MaterialDesignFloatingActionButton}"
+                                    Background="#ebddff"
+                                    ToolTip="Свернуть"
+                                    Click="btnMinimize_Click"
+                                    BorderBrush="#e9def8"
+                                    Cursor="Hand"
+                                    Width="25"
+                                    Height="25"
+                                    Margin="0 0 5 0">
+                                <materialDesign:PackIcon Kind="Minimize"
+                                                         Foreground="#4f3d74"
+                                                         Width="15"
+                                                         Height="15"/>
                             </Button>
-                            <Button x:Name ="Exit" Style="{StaticResource MaterialDesignFloatingActionButton}" Background="#1d7d97" Foreground="#16596b"
-                             ToolTip="Закрыть" Click="btnExit_Click" BorderBrush="#16596b" Cursor="Hand" Width="25" Height="25">
-                                <materialDesign:PackIcon Kind="Close" Foreground="#eaf0f3" Width="15" Height="15"/>
+                            <!--Кнопка "Закрыть программу"-->
+                            <Button x:Name ="Exit"
+                                    Style="{StaticResource MaterialDesignFloatingActionButton}"
+                                    Background="#ebddff"
+                                    ToolTip="Закрыть"
+                                    Click="btnExit_Click"
+                                    BorderBrush="#e9def8"
+                                    Cursor="Hand"
+                                    Width="25"
+                                    Height="25">
+                                <materialDesign:PackIcon Kind="Close"
+                                                         Foreground="#4f3d74"
+                                                         Width="15"
+                                                         Height="15"/>
                             </Button>
                         </StackPanel>
                         <StackPanel>
-                            <TextBlock Text="Вход пользователя" Foreground="Black" TextAlignment="Center" FontSize="28" FontFamily="Segoe Print" Margin="0 35" Cursor=""/>
+                            <TextBlock Text="Вход пользователя"                                       
+                                       TextAlignment="Center"
+                                       FontSize="28"
+                                       FontFamily="Segoe Print"
+                                       Margin="0 35"/>
                         </StackPanel>
-                        <StackPanel Orientation="Horizontal" Margin="-10" Width="200">
-                            <materialDesign:PackIcon Kind="User" Width="30" Height="30"/>
-                            <TextBox x:Name="txtUsername" Margin="10 0" Width="160" materialDesign:HintAssist.Hint="Введите имя пользователя"
-                             materialDesign:TextFieldAssist.UnderlineBrush="Black" Style="{StaticResource MaterialDesignTextBox}"
-                             Foreground="Black" BorderBrush="Black" CaretBrush="Black" 
-                             SelectionBrush="Black" Cursor="Pen"/>
+                        <!--Панель ввода логина-->
+                        <StackPanel Orientation="Horizontal"
+                                    Margin="-10"
+                                    Width="200">
+                            <materialDesign:PackIcon Kind="User"
+                                                     Width="30"
+                                                     Height="30"/>
+                            <TextBox x:Name="txtUsername"
+                                     Margin="10 0"
+                                     Width="160"
+                                     materialDesign:HintAssist.Hint="Введите имя пользователя"
+                                     Style="{StaticResource MaterialDesignTextBox}"                                    
+                                     Cursor="Pen"/>
                         </StackPanel>
-                        <StackPanel Orientation="Horizontal" Margin="20" Width="200" Cursor="" >
-                            <materialDesign:PackIcon Kind="Password" Width="30" Height="30"/>
-                            <PasswordBox x:Name="txtPassword" Margin="10 0" Width="160" materialDesign:HintAssist.Hint="Введите пароль"
-                             materialDesign:TextFieldAssist.UnderlineBrush="Black" Style="{StaticResource MaterialDesignRevealPasswordBox}"
-                             Foreground="Black" BorderBrush="Black" CaretBrush="Black"
-                             SelectionBrush="Black" Cursor="Pen"/>
+                        <!--Панель ввода пароля-->
+                        <StackPanel Orientation="Horizontal"
+                                    Margin="20"
+                                    Width="200">
+                            <materialDesign:PackIcon Kind="Password"
+                                                     Width="30"
+                                                     Height="30"/>
+                            <PasswordBox x:Name="txtPassword"
+                                         Margin="10 0"
+                                         Width="160"
+                                         materialDesign:HintAssist.Hint="Введите пароль"
+                                         Style="{StaticResource MaterialDesignRevealPasswordBox}"                                        
+                                         Cursor="Pen"/>
                         </StackPanel>
-                        <StackPanel HorizontalAlignment="Center" Margin="10 -5 0 0">
-                            <CheckBox x:Name="checkBoxSaveUser" Content="Запомнить меня" FontFamily="Roboto Medium" BorderBrush="#16596b" Background="#1d7d97" ToolTip="Выберите, чтобы сохранить данные аккаунта для быстрого входа на этом устройстве" Width="210" Height="20"/>
+                        <!--Панель запоминания пароля-->
+                        <StackPanel HorizontalAlignment="Center"
+                                    Margin="10 -5 0 0">
+                            <CheckBox x:Name="checkBoxSaveUser"
+                                      Content="Запомнить меня"
+                                      FontFamily="Roboto Medium"                                      
+                                      ToolTip="Выберите, чтобы сохранить данные аккаунта для быстрого входа на этом устройстве"
+                                      Width="210"
+                                      Height="20"/>
                         </StackPanel>
-                        <StackPanel HorizontalAlignment="Center" Margin="10">
-                            <Button x:Name="btnLogin" Width="100" Height="40"
-                             Style="{StaticResource MaterialDesignRaisedButton}"
-                             materialDesign:ButtonAssist.CornerRadius="15" BorderThickness="2" BorderBrush="#16596b" Background="#1d7d97"
-                             Foreground="#eaf0f3" ToolTip="Войдите в свой аккаунт" Click="btnLogIn_Click" Content="Войти" FontFamily="Roboto Medium">
+                        <StackPanel HorizontalAlignment="Center"
+                                    Margin="10">
+                            <!--Кнопка "Войти"-->
+                            <Button x:Name="btnLogin"
+                                    Width="100"
+                                    Height="40"
+                                    Style="{StaticResource MaterialDesignRaisedButton}"
+                                    materialDesign:ButtonAssist.CornerRadius="15"                                   
+                                    Foreground="#fdf6fe"
+                                    ToolTip="Войдите в свой аккаунт"
+                                    Click="btnLogIn_Click"
+                                    Content="Войти"
+                                    FontFamily="Roboto Medium">
                             </Button>
-                            <TextBlock HorizontalAlignment="Center" Margin="10">
-                                <Hyperlink x:Name="Registration" Foreground="#1d7d97" Cursor="Hand" Click="hpRegistration_Click" Style="{StaticResource CustomHyperlink}">
-                                    <TextBlock Text="Создать учетную запись" FontFamily="Roboto Medium"/>
+                            <!--Кнопка "Создать учетную запись"-->
+                            <TextBlock HorizontalAlignment="Center"
+                                       Margin="10">
+                                <Hyperlink x:Name="Registration"
+                                           Foreground="#4f3d74"
+                                           Cursor="Hand"
+                                           Click="hpRegistration_Click"
+                                           Style="{StaticResource CustomHyperlink}">
+                                    <TextBlock Text="Создать учетную запись"
+                                               FontFamily="Roboto Medium"/>
                                 </Hyperlink>
                             </TextBlock>
-                            <TextBlock HorizontalAlignment="Center" Margin="-5">
-                              <Hyperlink x:Name="CantLogIn" Foreground="#1d7d97" Cursor="Hand" Click="hpCantLogIn_Click" Style="{StaticResource CustomHyperlink}">
-                                <TextBlock Text="Забыли пароль?" FontFamily="Roboto Medium"/>
+                            <!--Кнопка "Забыли пароль"-->
+                            <TextBlock HorizontalAlignment="Center"
+                                       Margin="-5">
+                              <Hyperlink x:Name="CantLogIn"
+                                         Foreground="#4f3d74"
+                                         Cursor="Hand"
+                                         Click="hpCantLogIn_Click"
+                                         Style="{StaticResource CustomHyperlink}">
+                                <TextBlock Text="Забыли пароль?"
+                                           FontFamily="Roboto Medium"/>
                               </Hyperlink>
                             </TextBlock>
                         </StackPanel>
                     </StackPanel>
                 </StackPanel>
             </Border>
-            <TextBlock Text="ГУО &quot;Средняя школа №12 г. Борисова&quot;" VerticalAlignment="Bottom" HorizontalAlignment="Center"
-             Margin="20" FontFamily="Roboto Medium" FontSize="14"/>
+            <!--Нижняя надпись-->
+            <TextBlock Text="ГУО &quot;Средняя школа №12 г. Борисова&quot;"
+                       VerticalAlignment="Bottom"
+                       HorizontalAlignment="Center"
+                       Margin="20"
+                       FontFamily="Roboto Medium"
+                       FontSize="14"/>
         </Grid>
     </Border>
 </Window>
