@@ -22,6 +22,7 @@ namespace WPF_APP
         public RegistrationForm()
         {
             InitializeComponent();
+           
         }
 
         private void btnExit_Click(object sender, RoutedEventArgs e)
@@ -30,10 +31,38 @@ namespace WPF_APP
         }
         private void btnNext_Click(object sender, RoutedEventArgs e)
         {
+            registrarion.SelectedItem = stepTwo;
+        }
+        private void btnBack_Click(object sender, RoutedEventArgs e)
+        {
+            registrarion.SelectedItem = stepOne;
+        }
+        private void btnCreate_Click(object sender, RoutedEventArgs e)
+        {
             
         }
 
         private void TextBox_ImageFailed(object sender, ExceptionRoutedEventArgs e)
+        {
+
+        }
+
+        private void registrarion_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void registrarion_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void registrarion_SelectionChanged_2(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void registrarion_SelectionChanged_3(object sender, SelectionChangedEventArgs e)
         {
 
         }

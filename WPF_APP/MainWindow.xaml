@@ -12,11 +12,10 @@
         AllowsTransparency="True" 
         Background="Transparent" 
         ResizeMode="NoResize">
+    <!--Стиль для гипессылки-->
     <Window.Resources>
         <Style x:Key="CustomHyperlink"
                TargetType="Hyperlink">
-            <Setter Property="Foreground"
-                    Value="#1d7d97"/>
             <Setter Property="Cursor"
                     Value="Hand"/>
             <Setter Property="TextDecorations"
@@ -30,16 +29,19 @@
             </Style.Triggers>
         </Style>
     </Window.Resources>
+    <!--Внешняя граница-->
     <Border  CornerRadius="20"
              BorderThickness="1"
-             Background="#b4b6b5"
+             Background="#c9c2cd"
              Margin="10">
         <Grid>
+            <!--Внутреннее окно-->
             <Border CornerRadius="20"
                     BorderThickness="1"
-                    Background="#eaf0f3"
+                    Background="#fdf6fe"
                     Margin="10">
                 <StackPanel Orientation="Horizontal">
+                    <!--Изображение-->
                     <StackPanel Width="350"
                                 HorizontalAlignment="Left">
                         <Image Source="Img/LogIn.png"
@@ -51,47 +53,46 @@
                         <StackPanel Orientation="Horizontal"
                                     HorizontalAlignment="Right"
                                     Margin="20 5">
+                            <!--Кнопка "Свернуть окно"-->
                             <Button x:Name ="Minimize"
                                     Style="{StaticResource MaterialDesignFloatingActionButton}"
-                                    Background="#1d7d97"
-                                    Foreground="#16596b"
+                                    Background="#ebddff"
                                     ToolTip="Свернуть"
                                     Click="btnMinimize_Click"
-                                    BorderBrush="#16596b"
+                                    BorderBrush="#e9def8"
                                     Cursor="Hand"
                                     Width="25"
                                     Height="25"
                                     Margin="0 0 5 0">
                                 <materialDesign:PackIcon Kind="Minimize"
-                                                         Foreground="#eaf0f3"
+                                                         Foreground="#4f3d74"
                                                          Width="15"
                                                          Height="15"/>
                             </Button>
+                            <!--Кнопка "Закрыть программу"-->
                             <Button x:Name ="Exit"
                                     Style="{StaticResource MaterialDesignFloatingActionButton}"
-                                    Background="#1d7d97"
-                                    Foreground="#16596b"
+                                    Background="#ebddff"
                                     ToolTip="Закрыть"
                                     Click="btnExit_Click"
-                                    BorderBrush="#16596b"
+                                    BorderBrush="#e9def8"
                                     Cursor="Hand"
                                     Width="25"
                                     Height="25">
                                 <materialDesign:PackIcon Kind="Close"
-                                                         Foreground="#eaf0f3"
+                                                         Foreground="#4f3d74"
                                                          Width="15"
                                                          Height="15"/>
                             </Button>
                         </StackPanel>
                         <StackPanel>
-                            <TextBlock Text="Вход пользователя"
-                                       Foreground="Black"
+                            <TextBlock Text="Вход пользователя"                                       
                                        TextAlignment="Center"
                                        FontSize="28"
                                        FontFamily="Segoe Print"
-                                       Margin="0 35"
-                                       Cursor=""/>
+                                       Margin="0 35"/>
                         </StackPanel>
+                        <!--Панель ввода логина-->
                         <StackPanel Orientation="Horizontal"
                                     Margin="-10"
                                     Width="200">
@@ -102,18 +103,13 @@
                                      Margin="10 0"
                                      Width="160"
                                      materialDesign:HintAssist.Hint="Введите имя пользователя"
-                                     materialDesign:TextFieldAssist.UnderlineBrush="Black"
-                                     Style="{StaticResource MaterialDesignTextBox}"
-                                     Foreground="Black"
-                                     BorderBrush="Black"
-                                     CaretBrush="Black" 
-                                     SelectionBrush="Black"
+                                     Style="{StaticResource MaterialDesignTextBox}"                                    
                                      Cursor="Pen"/>
                         </StackPanel>
+                        <!--Панель ввода пароля-->
                         <StackPanel Orientation="Horizontal"
                                     Margin="20"
-                                    Width="200"
-                                    Cursor="" >
+                                    Width="200">
                             <materialDesign:PackIcon Kind="Password"
                                                      Width="30"
                                                      Height="30"/>
@@ -121,45 +117,38 @@
                                          Margin="10 0"
                                          Width="160"
                                          materialDesign:HintAssist.Hint="Введите пароль"
-                                         materialDesign:TextFieldAssist.UnderlineBrush="Black"
-                                         Style="{StaticResource MaterialDesignRevealPasswordBox}"
-                                         Foreground="Black"
-                                         BorderBrush="Black"
-                                         CaretBrush="Black"
-                                         SelectionBrush="Black"
+                                         Style="{StaticResource MaterialDesignRevealPasswordBox}"                                        
                                          Cursor="Pen"/>
                         </StackPanel>
+                        <!--Панель запоминания пароля-->
                         <StackPanel HorizontalAlignment="Center"
                                     Margin="10 -5 0 0">
                             <CheckBox x:Name="checkBoxSaveUser"
                                       Content="Запомнить меня"
-                                      FontFamily="Roboto Medium"
-                                      BorderBrush="#16596b"
-                                      Background="#1d7d97"
+                                      FontFamily="Roboto Medium"                                      
                                       ToolTip="Выберите, чтобы сохранить данные аккаунта для быстрого входа на этом устройстве"
                                       Width="210"
                                       Height="20"/>
                         </StackPanel>
                         <StackPanel HorizontalAlignment="Center"
                                     Margin="10">
+                            <!--Кнопка "Войти"-->
                             <Button x:Name="btnLogin"
                                     Width="100"
                                     Height="40"
                                     Style="{StaticResource MaterialDesignRaisedButton}"
-                                    materialDesign:ButtonAssist.CornerRadius="15"
-                                    BorderThickness="2"
-                                    BorderBrush="#16596b"
-                                    Background="#1d7d97"
-                                    Foreground="#eaf0f3"
+                                    materialDesign:ButtonAssist.CornerRadius="15"                                   
+                                    Foreground="#fdf6fe"
                                     ToolTip="Войдите в свой аккаунт"
                                     Click="btnLogIn_Click"
                                     Content="Войти"
                                     FontFamily="Roboto Medium">
                             </Button>
+                            <!--Кнопка "Создать учетную запись"-->
                             <TextBlock HorizontalAlignment="Center"
                                        Margin="10">
                                 <Hyperlink x:Name="Registration"
-                                           Foreground="#1d7d97"
+                                           Foreground="#4f3d74"
                                            Cursor="Hand"
                                            Click="hpRegistration_Click"
                                            Style="{StaticResource CustomHyperlink}">
@@ -167,10 +156,11 @@
                                                FontFamily="Roboto Medium"/>
                                 </Hyperlink>
                             </TextBlock>
+                            <!--Кнопка "Забыли пароль"-->
                             <TextBlock HorizontalAlignment="Center"
                                        Margin="-5">
                               <Hyperlink x:Name="CantLogIn"
-                                         Foreground="#1d7d97"
+                                         Foreground="#4f3d74"
                                          Cursor="Hand"
                                          Click="hpCantLogIn_Click"
                                          Style="{StaticResource CustomHyperlink}">
@@ -182,6 +172,7 @@
                     </StackPanel>
                 </StackPanel>
             </Border>
+            <!--Нижняя надпись-->
             <TextBlock Text="ГУО &quot;Средняя школа №12 г. Борисова&quot;"
                        VerticalAlignment="Bottom"
                        HorizontalAlignment="Center"
