@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 A:\Visual_Studio\WPF_APP\WPF_APP\App.xaml
-2-116362842
+4-1122200990
 
-7270077470
+91794959414
 161286207673
-MainWindow.xaml;RegistrationForm.xaml;
+CustomMessageBox.xaml;MainWindow.xaml;RecoverAccount.xaml;RegistrationForm.xaml;
 
-False
+True
 

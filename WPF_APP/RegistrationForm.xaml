@@ -75,7 +75,7 @@
                                 Grid.Row="1"                               
                                 LayoutTransform="1.2 0 0 1.2 0 0"
                                 Grid.Column="1"
-                                Margin="0,0,0,-5" SelectionChanged="registrarion_SelectionChanged_3">
+                                Margin="0,0,0,-5">
                         <!--Панель первого этапа регистрации-->
                         <TabItem x:Name="stepOne"
                                  Visibility="Collapsed">
@@ -131,7 +131,7 @@
                                                  Background="#ebddff"
                                                  BorderBrush="#e9def8"                                                                                                                                                                                                                                                                                          
                                                  Padding="5 5 5 5"
-                                                 Margin="20 5 0 10"/>                                                                                                    
+                                                 Margin="20 5 0 10"/>
                                 </StackPanel>
                                 <!--Повторный ввод пароля-->
                                 <StackPanel Orientation="Horizontal"
@@ -153,8 +153,33 @@
                                 <!--Ввод номера телефона-->
                                 <StackPanel Orientation="Horizontal"
                                             Width="250">
+                                    <ComboBox x:Name="codePhone"
+                                              Width="50"
+                                              Height="32"
+                                              Style="{StaticResource MaterialDesignOutlinedComboBox}"
+                                              materialDesign:HintAssist.HintPaddingBrush="#fdf6fe"
+                                              materialDesign:HintAssist.FontFamily="Arial"
+                                              materialDesign:TextFieldAssist.TextBoxViewMargin="8 0 0 0"
+                                              Background="#ebddff"
+                                              BorderBrush="#e9def8"                                                                                                                                                                                                                                                                                          
+                                              Padding="5 5 5 5"
+                                              Margin="20 5 0 10" >
+                                        <ComboBoxItem x:Name="firstCode"
+                                                      Content="29"
+                                                      FontFamily="Arial"/>
+                                        <ComboBoxItem x:Name="secondCode"
+                                                      Content="44"
+                                                      FontFamily="Arial"/>
+                                        <ComboBoxItem x:Name="thirdCode"
+                                                      Content="33"
+                                                      FontFamily="Arial"/>
+                                        <ComboBoxItem x:Name="fourthCode"
+                                                      Content="25"
+                                                      FontFamily="Arial"/>
+                                    </ComboBox>
                                     <TextBox x:Name="phoneNumber"
-                                             Width="215"
+                                             Width="160"
+                                             MaxLength="7"                                             
                                              Style = "{StaticResource MaterialDesignOutlinedTextBox}"
                                              materialDesign:TextFieldAssist.LeadingIcon="Phone"
                                              materialDesign:HintAssist.Hint="Номер телефона"
@@ -162,10 +187,11 @@
                                              materialDesign:HintAssist.FontFamily="Arial"                           
                                              materialDesign:TextFieldAssist.HasLeadingIcon="True"
                                              materialDesign:TextFieldAssist.NewSpecHighlightingEnabled="False"
+                                             materialDesign:TextFieldAssist.CharacterCounterVisibility="Hidden"
                                              Background="#ebddff"
                                              BorderBrush="#e9def8"                                                                                                                                                                                                                                                                                          
                                              Padding="5 5 5 5"
-                                             Margin="20 5 0 10"/>
+                                             Margin="5 5 0 10"/>
                                 </StackPanel>
                                 <!--Кнопка "Далее"-->
                                 <Button x:Name="btnNext"
@@ -243,7 +269,7 @@
                                                  Padding="5 5 5 5">
                                         </DatePicker>
                                     </Border>
-                                <!--Выбор пола-->
+                                    <!--Выбор пола-->
                                 </StackPanel>
                                 <GroupBox Header="Гендер" 
                                           FontSize="8"

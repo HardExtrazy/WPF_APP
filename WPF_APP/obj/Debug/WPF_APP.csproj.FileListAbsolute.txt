@@ -24,3 +24,7 @@ A:\Visual_Studio\WPF_APP\WPF_APP\obj\Debug\WPF_APP.pdb
 A:\Visual_Studio\WPF_APP\WPF_APP\obj\Debug\WPF_APP.exe.config
 A:\Visual_Studio\WPF_APP\WPF_APP\obj\Debug\RegistrationForm.g.cs
 A:\Visual_Studio\WPF_APP\WPF_APP\obj\Debug\RegistrationForm.baml
+A:\Visual_Studio\WPF_APP\WPF_APP\obj\Debug\RecoverAccount.g.cs
+A:\Visual_Studio\WPF_APP\WPF_APP\obj\Debug\RecoverAccount.baml
+A:\Visual_Studio\WPF_APP\WPF_APP\obj\Debug\CustomMessageBox.g.cs
+A:\Visual_Studio\WPF_APP\WPF_APP\obj\Debug\CustomMessageBox.baml

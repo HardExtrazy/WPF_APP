@@ -53,7 +53,8 @@ namespace WPF_APP
 
         private void hpCantLogIn_Click(object sender, RoutedEventArgs e)
         {
-
+            Window RecoverAccount = new RecoverAccount();
+            RecoverAccount.ShowDialog();
         }
     }
 }
