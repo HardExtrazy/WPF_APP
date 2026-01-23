@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 A:\Visual_Studio\WPF_APP\WPF_APP\App.xaml
-4-1122200990
+11-2007970273
 
-8-417919264
+23-2132265586
 161286207673
-CustomMessageBox.xaml;MainWindow.xaml;RecoverAccount.xaml;RegistrationForm.xaml;
+CustomMessageBox.xaml;MainWindow.xaml;RecoverAccount.xaml;RegistrationForm.xaml;Utilities\DataTemplate.xaml;View\Help.xaml;View\Home.xaml;View\Schedule.xaml;View\Subjects.xaml;View\Teachers.xaml;WorkWindow.xaml;
 
 False
 

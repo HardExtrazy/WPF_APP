@@ -1,0 +1,26 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:view="clr-namespace:WPF_APP.View"
+                    xmlns:vm="clr-namespace:WPF_APP.ViewModel">
+
+    <DataTemplate DataType="{x:Type vm:HomeVM}">
+        <view:Home/>
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type vm:TeacherVM}">
+        <view:Teachers/>
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type vm:SubjectVM}">
+        <view:Subjects/>
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type vm:ScheduleVM}">
+        <view:Schedule/>
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type vm:HelpVM}">
+        <view:Help/>
+    </DataTemplate>
+
+</ResourceDictionary>

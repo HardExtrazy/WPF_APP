@@ -29,10 +29,14 @@ namespace WPF_APP
         {
 
         }
-
+        //Авторизоваться
         private void btnLogIn_Click(object sender, RoutedEventArgs e)
         {
-
+            
+            Window WorkWindow = new WorkWindow();
+            this.Close();
+            WorkWindow.ShowDialog();
+            
         }
         //Завершить работу приложения
         private void btnExit_Click(object sender, RoutedEventArgs e)

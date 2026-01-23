@@ -59,7 +59,7 @@
                             <materialDesign:PackIcon Kind="Close"
                                                      Foreground="#4f3d74"
                                                      Width="15"
-                                                     Height="15" Cursor=""/>
+                                                     Height="15"/>
                         </Button>
                     </StackPanel>
                     <Label Grid.Row="1"
@@ -339,10 +339,10 @@
                                                       Content="Директор"
                                                       FontFamily="Arial"/>
                                         <ComboBoxItem x:Name="deputyHead"
-                                                      Content="Завуч"
+                                                      Content="Завуч средней школы"
                                                       FontFamily="Arial"/>
                                         <ComboBoxItem x:Name="teacher"
-                                                      Content="Учитель"
+                                                      Content="Завуч начальной школы"
                                                       FontFamily="Arial"/>
                                     </ComboBox>
                                 </StackPanel>

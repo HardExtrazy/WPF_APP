@@ -1,0 +1,174 @@
+﻿<Window x:Class="WPF_APP.WorkWindow"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:vm="clr-namespace:WPF_APP.ViewModel"
+        xmlns:view="clr-namespace:WPF_APP.View"
+        xmlns:Menu="clr-namespace:WPF_APP.Utilities"
+        mc:Ignorable="d"
+        Title="WorkWindow"
+        Height="600"
+        Width="850"
+        WindowStartupLocation="CenterScreen" 
+        WindowStyle="None"
+        AllowsTransparency="True" 
+        Background="Transparent" 
+        ResizeMode="NoResize">
+
+
+    <Window.DataContext>
+        <vm:NavigatorVM/>
+    </Window.DataContext>
+
+    <Grid>
+        <Border CornerRadius="20"
+                Background="#c9c2cd">
+            <Grid>
+                <Border CornerRadius="20"
+                        BorderThickness="1"
+                        Background="#fdf6fe"
+                        Margin="10">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="228"/>
+                            <ColumnDefinition Width="622"/>
+                        </Grid.ColumnDefinitions>
+                        <!--Панель навигации-->
+                        <Grid HorizontalAlignment="Left"
+                              Width="228" Cursor="">
+                            <Border Background="#4f3d74"
+                                    CornerRadius="20 0 0 20"/>
+                            <StackPanel Height="400"
+                                        Width="228">
+                                <Menu:Btn Command="{Binding HomeCommand}"
+                                          IsChecked="True"
+                                          Style="{StaticResource MaterialDesignFlatButton}"
+                                          Background="#4f3d74"
+                                          HorizontalAlignment="Left"
+                                          Height="45">
+                                    <Grid>
+                                        <materialDesign:PackIcon Kind="Home"
+                                                                 Foreground="#fdf6fe"
+                                                                 Height="28"
+                                                                 Width="50"
+                                                                 VerticalAlignment="Center"/>
+                                        <TextBlock Text="Домашняя страница"
+                                                   Foreground="#fdf6fe"
+                                                   Margin="50 0 0 0"
+                                                   Padding="0 7 0 0"
+                                                   FontFamily="Roboto Medium"
+                                                   FontSize="15" Cursor=""/>
+                                    </Grid>
+
+                                </Menu:Btn>
+
+                                <Menu:Btn Command="{Binding TeachersCommand}"
+                                          Style="{StaticResource MaterialDesignFlatButton}"
+                                          Background="#4f3d74"
+                                          HorizontalAlignment="Left"
+                                          Height="45" Cursor="Hand">       
+                                    <Grid>
+                                        <materialDesign:PackIcon Kind="Teacher"
+                                                                 Foreground="#fdf6fe"
+                                                                 Height="28"
+                                                                 Width="50"
+                                                                 VerticalAlignment="Center"/>
+                                        <TextBlock Text="Учителя                     "
+                                                         Foreground="#fdf6fe"
+                                                         Margin="50 0 0 0"
+                                                         Padding="0 7 0 0"
+                                                         FontFamily="Roboto Medium"
+                                                         FontSize="15"/>
+                                    </Grid>
+
+                                </Menu:Btn>
+
+                                <Menu:Btn Command="{Binding SubjectsCommand}"
+                                          Style="{StaticResource MaterialDesignFlatButton}"
+                                          Background="#4f3d74"
+                                          HorizontalAlignment="Left"
+                                          Height="45">
+                                    <Grid>
+                                        <materialDesign:PackIcon Kind="Book"
+                                                                 Foreground="#fdf6fe"
+                                                                 Height="28"
+                                                                 Width="50"
+                                                                 VerticalAlignment="Center"/>
+                                        <TextBlock Text="Учебные предметы  "
+                                                   Foreground="#fdf6fe"
+                                                   Margin="50 0 0 0"
+                                                   Padding="0 7 0 0"
+                                                   FontFamily="Roboto Medium"
+                                                   FontSize="15"/>
+                                    </Grid>
+
+                                </Menu:Btn>
+                                
+                                <Menu:Btn Command="{Binding ScheduleCommand}"
+                                          Style="{StaticResource MaterialDesignFlatButton}"
+                                          Background="#4f3d74"
+                                          HorizontalAlignment="Left"
+                                          Height="45">
+                                    <Grid>
+                                        <materialDesign:PackIcon Kind="Timelapse"
+                                                                 Foreground="#fdf6fe"
+                                                                 Height="28"
+                                                                 Width="50"
+                                                                 VerticalAlignment="Center"/>
+                                        <TextBlock Text="Расписание занятий "
+                                                   Foreground="#fdf6fe"
+                                                   Margin="50 0 0 0"
+                                                   Padding="0 7 0 0"
+                                                   FontFamily="Roboto Medium"
+                                                   FontSize="15"/>
+                                    </Grid>
+
+                                </Menu:Btn>
+
+                                <Menu:Btn Command="{Binding HelpCommand}"
+                                          Style="{StaticResource MaterialDesignFlatButton}"
+                                          Background="#4f3d74"
+                                          HorizontalAlignment="Left"
+                                          Height="45">
+                                    <Grid>
+                                        <materialDesign:PackIcon Kind="Help"
+                                                                 Foreground="#fdf6fe"
+                                                                 Height="28"
+                                                                 Width="50"
+                                                                 VerticalAlignment="Center"/>
+                                        <TextBlock Text="Помощь                    "
+                                                   Foreground="#fdf6fe"
+                                                   Margin="50 0 0 0"
+                                                   Padding="0 7 0 0"
+                                                   FontFamily="Roboto Medium"
+                                                   FontSize="15"/>
+                                    </Grid>
+
+                                </Menu:Btn>
+
+
+                            </StackPanel>
+                            <Button x:Name="Exit"
+                                    Style="{StaticResource MaterialDesignIconButton}"
+                                    VerticalAlignment="Bottom"
+                                    LayoutTransform="1.8 0 0 1.8 0 0"
+                                    Click="btnExit_Click"
+                                    Margin="5">
+                                <materialDesign:PackIcon Kind="Power"
+                                                         Foreground="#fdf6fe"/>
+                            </Button>
+                        </Grid>
+                        <Grid Grid.Column="1">
+                            <ContentControl x:Name="Pages"
+                                            Content="{Binding CurrentView}"/>
+
+                        </Grid>
+                    </Grid>
+                </Border>
+            </Grid>
+
+        </Border>
+    </Grid>
+</Window>
