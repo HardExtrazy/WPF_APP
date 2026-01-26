@@ -78,12 +78,16 @@
     <Compile Include="Utilities\Btn.cs" />
     <Compile Include="Utilities\RelayCommand.cs" />
     <Compile Include="Utilities\ViewModelBase.cs" />
+    <Compile Include="ViewModel\ClassVM.cs" />
     <Compile Include="ViewModel\HelpVM.cs" />
     <Compile Include="ViewModel\HomeVM.cs" />
     <Compile Include="ViewModel\NavigatorVM.cs" />
     <Compile Include="ViewModel\ScheduleVM.cs" />
     <Compile Include="ViewModel\SubjectVM.cs" />
     <Compile Include="ViewModel\TeacherVM.cs" />
+    <Compile Include="View\Classes.xaml.cs">
+      <DependentUpon>Classes.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Help.xaml.cs">
       <DependentUpon>Help.xaml</DependentUpon>
     </Compile>
@@ -127,6 +131,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Utilities\DataTemplate.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Classes.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

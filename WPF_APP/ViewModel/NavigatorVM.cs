@@ -16,12 +16,14 @@ namespace WPF_APP.ViewModel
         public ICommand SubjectsCommand { get; set; }
         public ICommand ScheduleCommand { get; set; }
         public ICommand HelpCommand { get; set; }
+        public ICommand ClassCommand { get; set; }
 
         private void Home(object obj) => CurrentView = new HomeVM();
         private void Teacher(object obj) => CurrentView = new TeacherVM();
         private void Subject(object obj) => CurrentView = new SubjectVM();
         private void Schedule(object obj) => CurrentView = new ScheduleVM();
         private void Help(object obj) => CurrentView = new HelpVM();
+        private void Class(object obj) => CurrentView = new ClassVM();
 
         public NavigatorVM()
         {
@@ -30,6 +32,7 @@ namespace WPF_APP.ViewModel
             SubjectsCommand = new RelayCommand(Subject);
             ScheduleCommand = new RelayCommand(Schedule);
             HelpCommand = new RelayCommand(Help);
+            ClassCommand = new RelayCommand(Class);
             CurrentView = new HomeVM();
 
         }

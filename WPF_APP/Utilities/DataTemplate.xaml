@@ -23,4 +23,8 @@
         <view:Help/>
     </DataTemplate>
 
+    <DataTemplate DataType="{x:Type vm:ClassVM}">
+        <view:Classes/>
+    </DataTemplate>
+
 </ResourceDictionary>
