@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WPF_APP.Services;
+using WPF_APP.ViewModel;
 
 namespace WPF_APP.View
 {
@@ -20,9 +22,39 @@ namespace WPF_APP.View
     /// </summary>
     public partial class Teachers : UserControl
     {
+        private TeacherVM _viewModel;
         public Teachers()
         {
             InitializeComponent();
+            _viewModel = DataContext as TeacherVM;
+        }
+
+        private async void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            await LoadTeachers();
+        }
+
+        private async Task LoadTeachers()
+        {
+            try
+            {
+                string token = AuthService.Token;
+
+                if (string.IsNullOrEmpty(token))
+                {
+                    MessageBox.Show("Требуется авторизация", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
+
+                if (_viewModel != null)
+                {
+                    await _viewModel.LoadTeachersAsync(token);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Ошибка: {ex.Message}", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
     }
 }

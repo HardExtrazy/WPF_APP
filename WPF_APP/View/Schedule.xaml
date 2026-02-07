@@ -13,12 +13,60 @@
     </UserControl.DataContext>
     <Grid Margin="15">
         <Border CornerRadius="0 20 20 0"
-        Background="#fdf6fe">
+                Background="#fdf6fe">
             <Grid Margin="10">
-                <TextBlock Text="Страница составления расписания"
-                       HorizontalAlignment="Center"
-                       VerticalAlignment="Center"
-                       FontSize="34"/>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height ="*"/>
+                    <RowDefinition Height ="400"/>
+                    <RowDefinition Height="70"/>
+                </Grid.RowDefinitions>
+                <StackPanel Grid.Row="0">
+                    <TextBox x:Name="search"
+                             VerticalAlignment="Center"
+                             Style = "{StaticResource MaterialDesignOutlinedTextBox}"
+                             materialDesign:TextFieldAssist.LeadingIcon="Search"
+                             materialDesign:HintAssist.Hint="Поиск"
+                             materialDesign:HintAssist.HintPaddingBrush="#fdf6fe"
+                             materialDesign:HintAssist.FontFamily="Arial"
+                             materialDesign:TextFieldAssist.HasLeadingIcon="True"
+                             Background="#ebddff"
+                             BorderBrush="#e9def8"
+                             Padding="5 5 5 5"
+                             Margin="5 15"
+                             Height="35"
+                             Width="475"/>
+                </StackPanel>
+                <DataGrid x:Name="userSchedualDataGrid"
+                          Grid.Row="1"
+                          Background="#ebddff"
+                          BorderBrush="#e9def8"
+                          AutoGenerateColumns="False"
+                          Margin="0,0,10,0"
+                          Style="{StaticResource MaterialDesignDataGrid}">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Класс"/>
+                        <DataGridTextColumn Header="Предмет"/>
+                        <DataGridTextColumn Header="День недели"/>
+                        <DataGridTextColumn Header="Номер урока"/>
+                        <DataGridTextColumn Header="Учитель"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+                <StackPanel Grid.Row="2"
+                            VerticalAlignment="Top"
+                            HorizontalAlignment="Center"
+                            Orientation="Horizontal"
+                            Margin="5">
+                    <Button x:Name="btnGenerate"
+                            Width="135"
+                            Height="40"
+                            Content="Генерироваить"
+                            ToolTip="Генерация расписания"
+                            FontFamily="Roboto Medium"
+                            Style="{StaticResource MaterialDesignRaisedButton}"
+                            materialDesign:ButtonAssist.CornerRadius="15"                              
+                            Foreground="#fdf6fe"                                                                                                                              
+                            Margin="10"/>
+                </StackPanel>
             </Grid>
         </Border>
     </Grid>

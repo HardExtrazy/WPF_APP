@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WPF_APP.Services;
+using WPF_APP.ViewModel;
 
 namespace WPF_APP
 {
@@ -20,24 +22,55 @@ namespace WPF_APP
     /// </summary>
     public partial class MainWindow : Window
     {
+        private LoginVM _viewModel;
+
         public MainWindow()
         {
             InitializeComponent();
+            var vm = (LoginVM)DataContext;
+
+            // Привязка пароля
+            txtPassword.PasswordChanged += (s, e) => vm.Password = txtPassword.Password;
+
+            // Обработчик успешного входа
+            vm.OnLoginSuccess = () =>
+            {
+                new WorkWindow().Show();
+                Close();
+            };
+            // Обработчик неуспешного входа
+            vm.OnLoginFailed = () =>
+            {
+                txtPassword.Clear();
+                txtPassword.Focus();
+            };
+
+            // Enter для навигации
+            txtUsername.KeyDown += (s, e) => { if (e.Key == Key.Enter) txtPassword.Focus(); };
+            txtPassword.KeyDown += (s, e) => { if (e.Key == Key.Enter && vm.CanLogin) vm.LoginCommand.Execute(null); };
+
+            // Фокус
+            Loaded += (s, e) => txtUsername.Focus();
         }
 
-        private void txtUsername_ColorChanged(object sender, RoutedPropertyChangedEventArgs<Color> e)
+        private void TextBoxUsername_KeyDown(object sender, KeyEventArgs e)
         {
-
+            if (e.Key == Key.Enter)
+            {
+                txtPassword.Focus();
+            }
         }
-        //Авторизоваться
-        private void btnLogIn_Click(object sender, RoutedEventArgs e)
+        private void PasswordBox_KeyDown(object sender, KeyEventArgs e)
         {
-            
-            Window WorkWindow = new WorkWindow();
-            this.Close();
-            WorkWindow.ShowDialog();
-            
-        }
+            if (e.Key == Key.Enter)
+            {
+                if (_viewModel != null && _viewModel.CanLogin)
+                {
+                    _viewModel.LoginCommand.Execute(null);
+                }
+            }
+        }     
+      
         //Завершить работу приложения
         private void btnExit_Click(object sender, RoutedEventArgs e)
         {

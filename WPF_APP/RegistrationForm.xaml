@@ -5,6 +5,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPF_APP"
+        xmlns:vm="clr-namespace:WPF_APP.ViewModel"
         mc:Ignorable="d"
         Title="RegistrationForm" Height="550" Width="500" MinHeight="450" MinWidth="350"
         WindowStartupLocation="CenterScreen" 
@@ -14,6 +15,9 @@
         ResizeMode="NoResize"
         xmlns:converters="clr-namespace:MaterialDesignThemes.Wpf.Converters;assembly=MaterialDesignThemes.Wpf"
         xmlns:wpf="clr-namespace:MaterialDesignThemes.Wpf;assembly=MaterialDesignThemes.Wpf">
+    <Window.DataContext>
+        <vm:RegistrationVM/>
+    </Window.DataContext>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="449*"/>
@@ -88,6 +92,7 @@
                                 <StackPanel Orientation="Horizontal"
                                             Width="250">
                                     <TextBox x:Name="login"
+                                             Text="{Binding Login, UpdateSourceTrigger=PropertyChanged}"
                                              Width="215"
                                              Style = "{StaticResource MaterialDesignOutlinedTextBox}"
                                              materialDesign:TextFieldAssist.LeadingIcon="User"                                    
@@ -104,22 +109,24 @@
                                 <StackPanel Orientation="Horizontal"
                                     Width="250">
                                     <TextBox x:Name="email"
+                                             Text="{Binding Email, UpdateSourceTrigger=PropertyChanged}"
                                              Width="215" 
-                                     Style = "{StaticResource MaterialDesignOutlinedTextBox}"
-                                     materialDesign:TextFieldAssist.LeadingIcon="Mailbox"
-                                     materialDesign:HintAssist.Hint="Электронная почта"
-                                     materialDesign:HintAssist.HintPaddingBrush="#fdf6fe"
-                                     materialDesign:HintAssist.FontFamily="Arial"
-                                     materialDesign:TextFieldAssist.HasLeadingIcon="True"                                   
-                                     Background="#ebddff"
-                                     BorderBrush="#e9def8"                                                                                                                                                                                                                                                                                          
-                                     Padding="5 5 5 5"
-                                     Margin="20 5 0 10"/>
+                                             Style = "{StaticResource MaterialDesignOutlinedTextBox}"
+                                             materialDesign:TextFieldAssist.LeadingIcon="Mailbox"
+                                             materialDesign:HintAssist.Hint="Электронная почта"
+                                             materialDesign:HintAssist.HintPaddingBrush="#fdf6fe"
+                                             materialDesign:HintAssist.FontFamily="Arial"
+                                             materialDesign:TextFieldAssist.HasLeadingIcon="True"                                   
+                                             Background="#ebddff"
+                                             BorderBrush="#e9def8"                                                                                                                                                                                                                                                                                          
+                                             Padding="5 5 5 5"
+                                             Margin="20 5 0 10"/>
                                 </StackPanel>
                                 <!--Ввод пароля-->
                                 <StackPanel Orientation="Horizontal"
                                     Width="250">
                                     <PasswordBox x:Name="password"
+                                                 PasswordChanged="PasswordBox_PasswordChanged"
                                                  Width="215"
                                                  Style = "{StaticResource MaterialDesignOutlinedRevealPasswordBox}"
                                                  materialDesign:TextFieldAssist.LeadingIcon="PasswordAdd"
@@ -136,7 +143,8 @@
                                 <!--Повторный ввод пароля-->
                                 <StackPanel Orientation="Horizontal"
                                     Width="250">
-                                    <PasswordBox x:Name="repiatPassword"
+                                    <PasswordBox x:Name="repeatPassword"
+                                                 PasswordChanged="ConfirmPasswordBox_PasswordChanged"
                                                  Width="215"
                                                  Style = "{StaticResource MaterialDesignOutlinedRevealPasswordBox}"
                                                  materialDesign:TextFieldAssist.LeadingIcon="PasswordAddOutline"
@@ -154,6 +162,8 @@
                                 <StackPanel Orientation="Horizontal"
                                             Width="250">
                                     <ComboBox x:Name="codePhone"
+                                              SelectedValue="{Binding CountryCode}"
+                                              SelectedValuePath="Content"
                                               Width="50"
                                               Height="32"
                                               Style="{StaticResource MaterialDesignOutlinedComboBox}"
@@ -178,6 +188,7 @@
                                                       FontFamily="Arial"/>
                                     </ComboBox>
                                     <TextBox x:Name="phoneNumber"
+                                             Text="{Binding PhoneNumber, UpdateSourceTrigger=PropertyChanged}"
                                              Width="160"
                                              MaxLength="7"                                             
                                              Style = "{StaticResource MaterialDesignOutlinedTextBox}"
@@ -195,6 +206,7 @@
                                 </StackPanel>
                                 <!--Кнопка "Далее"-->
                                 <Button x:Name="btnNext"
+                                        IsEnabled="{Binding CanGoToNextStep}"
                                         Width="100"
                                         Height="40"
                                         Content="Далее"
@@ -219,6 +231,7 @@
                                             Width="250">
                                     <!--Ввод имени-->
                                     <TextBox x:Name="firstName"
+                                             Text="{Binding FirstName, UpdateSourceTrigger=PropertyChanged}"
                                              Width="215"
                                              Style = "{StaticResource MaterialDesignOutlinedTextBox}"
                                              materialDesign:TextFieldAssist.LeadingIcon="AccountBadge"
@@ -232,10 +245,11 @@
                                              Padding="5 5 5 5"
                                              Margin="20 5 0 10"/>
                                 </StackPanel>
-                                <!--Ввод пароля-->
+                                <!--Ввод фамилии-->
                                 <StackPanel Orientation="Horizontal"
                                             Width="250">
                                     <TextBox x:Name="lastName"
+                                             Text="{Binding LastName, UpdateSourceTrigger=PropertyChanged}"
                                              Width="215"
                                              Style = "{StaticResource MaterialDesignOutlinedTextBox}"
                                              materialDesign:TextFieldAssist.LeadingIcon="AccountDownload"
@@ -257,94 +271,59 @@
                                             CornerRadius="4"
                                             Margin="20 5 0 10">
                                         <DatePicker x:Name="dateOfBirth"
-                                                 Width="215"
-                                                 Language="ru-RU"
-                                                 Style = "{StaticResource MaterialDesignOutlinedDatePicker}"
-                                                 materialDesign:TextFieldAssist.LeadingIcon="DateRange"
-                                                 materialDesign:HintAssist.Hint="Дата рождения"
-                                                 materialDesign:HintAssist.HintPaddingBrush="#fdf6fe"
-                                                 materialDesign:HintAssist.FontFamily="Arial"                           
-                                                 materialDesign:TextFieldAssist.HasLeadingIcon="True"                                            
-                                                 BorderBrush="#e9def8"                                                                                                                                                                                                                                                                                         
-                                                 Padding="5 5 5 5">
+                                                    SelectedDate="{Binding DateOfBirth}"
+                                                    Width="215"
+                                                    Language="ru-RU"
+                                                    Style = "{StaticResource MaterialDesignOutlinedDatePicker}"
+                                                    materialDesign:TextFieldAssist.LeadingIcon="DateRange"
+                                                    materialDesign:HintAssist.Hint="Дата рождения"
+                                                    materialDesign:HintAssist.HintPaddingBrush="#fdf6fe"
+                                                    materialDesign:HintAssist.FontFamily="Arial"                           
+                                                    materialDesign:TextFieldAssist.HasLeadingIcon="True"                                            
+                                                    BorderBrush="#e9def8"                                                                                                                                                                                                                                                                                         
+                                                    Padding="5 5 5 5">
                                         </DatePicker>
                                     </Border>
-                                    <!--Выбор пола-->
                                 </StackPanel>
-                                <GroupBox Header="Гендер" 
-                                          FontSize="8"
-                                          FontFamily="Arial"                                         
-                                          BorderBrush="#e9def8"                                         
-                                          BorderThickness="1"
-                                          Margin="0 5 0 10">
-                                    <GroupBox.Template>
-                                        <ControlTemplate TargetType="GroupBox">
-                                            <Grid>
-                                                <Border Background="#ebddff"
-                                                        BorderBrush="{TemplateBinding BorderBrush}"
-                                                        BorderThickness="{TemplateBinding BorderThickness}"
-                                                        CornerRadius="4"
-                                                        Padding="0"
-                                                        Width="215"
-                                                        Height="32"
-                                                        Margin="5 0 0 0">
-                                                    <ContentPresenter/>
-                                                </Border>
-                                                <Border Background="#fdf6fe"                                                      
-                                                        Padding="5,1"
-                                                        HorizontalAlignment="Left"                                                        
-                                                        Margin="49,-8,0,28">
-                                                    <TextBlock Text="{TemplateBinding Header}"
-                                                               Foreground="#67568a"  
-                                                               FontSize="8"
-                                                               FontFamily="Arial"/>
-                                                </Border>
-                                            </Grid>
-                                        </ControlTemplate>
-                                    </GroupBox.Template>
-                                    <StackPanel Orientation="Horizontal">
-                                        <RadioButton x:Name="Male"
-                                                     Content="Мужской"
-                                                     FontFamily="Arial"
-                                                     FontSize="10"
-                                                     GroupName="Gender"
-                                                     Margin="10 0"                                                    
-                                                     materialDesign:RadioButtonAssist.RadioButtonSize="14"/>
-                                        <RadioButton x:Name="Female"
-                                                     Content="Женский"
-                                                     FontFamily="Arial"
-                                                     FontSize="10"
-                                                     GroupName="Gender"
-                                                     Margin="10 0"                                                    
-                                                     materialDesign:RadioButtonAssist.RadioButtonSize="14"/>
-                                    </StackPanel>
-                                </GroupBox>
+                                <!--Выбор обраpования-->
+                                <StackPanel Orientation="Horizontal"
+                                            Width="250">
+                                    <ComboBox x:Name="education"
+                                               ItemsSource="{Binding Educations}"
+                                               DisplayMemberPath="Name"
+                                               SelectedValuePath="Id"
+                                               SelectedValue="{Binding SelectedEducationId}"
+                                               Width="215"
+                                               Style="{StaticResource MaterialDesignOutlinedComboBox}"
+                                               materialDesign:TextFieldAssist.LeadingIcon="Book"
+                                               materialDesign:HintAssist.Hint="Образование"
+                                               materialDesign:HintAssist.HintPaddingBrush="#fdf6fe"
+                                               materialDesign:HintAssist.FontFamily="Arial"                           
+                                               materialDesign:TextFieldAssist.HasLeadingIcon="True"
+                                               Background="#ebddff"
+                                               BorderBrush="#e9def8"                                                                                                                                                                                                                                                                                          
+                                               Padding="5 5 5 5"
+                                               Margin="20 5 0 10"/>
+                                </StackPanel>
                                 <!--Выбор должности-->
                                 <StackPanel Orientation="Horizontal"
                                             Width="250">
                                     <ComboBox x:Name="role"
+                                              ItemsSource="{Binding Roles}"
+                                              DisplayMemberPath="Name"
+                                              SelectedValuePath="Id"
+                                             SelectedValue="{Binding SelectedRoleId}"
                                               Width="215"
-                                              Style = "{StaticResource MaterialDesignOutlinedComboBox}"
+                                              Style="{StaticResource MaterialDesignOutlinedComboBox}"
                                               materialDesign:TextFieldAssist.LeadingIcon="HatFedora"
                                               materialDesign:HintAssist.Hint="Должность"
                                               materialDesign:HintAssist.HintPaddingBrush="#fdf6fe"
                                               materialDesign:HintAssist.FontFamily="Arial"                           
                                               materialDesign:TextFieldAssist.HasLeadingIcon="True"
-                                              materialDesign:TextFieldAssist.NewSpecHighlightingEnabled="False"
                                               Background="#ebddff"
                                               BorderBrush="#e9def8"                                                                                                                                                                                                                                                                                          
                                               Padding="5 5 5 5"
-                                              Margin="20 5 0 10">
-                                        <ComboBoxItem x:Name="director"
-                                                      Content="Директор"
-                                                      FontFamily="Arial"/>
-                                        <ComboBoxItem x:Name="deputyHead"
-                                                      Content="Завуч средней школы"
-                                                      FontFamily="Arial"/>
-                                        <ComboBoxItem x:Name="teacher"
-                                                      Content="Завуч начальной школы"
-                                                      FontFamily="Arial"/>
-                                    </ComboBox>
+                                              Margin="20 5 0 10"/>
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                                     <!--Кнопка "Назад"-->
@@ -361,13 +340,14 @@
                                             Margin="10"/>
                                     <!--Кнопка "Создать"-->
                                     <Button x:Name="btnCreate"
+                                            IsEnabled="{Binding CanRegister}"
+                                            Command="{Binding RegisterCommand}"
                                             Width="100"
                                             Height="40"
                                             Style="{StaticResource MaterialDesignRaisedButton}"
                                             Foreground="#fdf6fe" 
                                             materialDesign:ButtonAssist.CornerRadius="15"                                            
                                             ToolTip="Создать аккаунт"
-                                            Click="btnCreate_Click"
                                             Content="Создать"
                                             FontFamily="Roboto Medium"
                                             Margin="10"/>

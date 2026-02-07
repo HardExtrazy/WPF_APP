@@ -7,18 +7,84 @@
              xmlns:vm="clr-namespace:WPF_APP.ViewModel"
              mc:Ignorable="d" 
              d:DesignHeight="600"
-             d:DesignWidth="622">
+             d:DesignWidth="622"
+             Loaded="UserControl_Loaded">
     <UserControl.DataContext>
         <vm:HomeVM/>
     </UserControl.DataContext>
     <Grid Margin="15">
         <Border CornerRadius="0 20 20 0"
-        Background="#fdf6fe">
+                Background="#fdf6fe">
             <Grid Margin="10">
-                <TextBlock Text="Домашняя страница"
-                       HorizontalAlignment="Center"
-                       VerticalAlignment="Center"
-                       FontSize="34"/>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <StackPanel Margin="0 0 105 95">
+                    <Image x:Name="avatar"
+                           Source="/Img/VoidUser.jpg"/>
+                </StackPanel>
+                <StackPanel Margin="180,0,10,94"
+                            Grid.ColumnSpan="2">
+                    <TextBlock Text="{Binding UserId}"
+                               FontSize="16"
+                               FontFamily="Roboto Medium"
+                               Margin="5"/>
+                    <TextBlock Text="{Binding FirstName}"
+                               FontSize="16"
+                               FontFamily="Roboto Medium"
+                               Margin="5 0"/>
+                    <TextBlock Text="{Binding LastName}"
+                               FontSize="16"
+                               FontFamily="Roboto Medium"
+                               Margin="5"/>
+                    <TextBlock Text="{Binding Surename}"
+                               FontSize="16"
+                               FontFamily="Roboto Medium"
+                               Margin="5 0"/>
+                    <TextBlock Text="{Binding DateOfBirth}"
+                               FontSize="16"
+                               FontFamily="Roboto Medium"
+                               Margin="5"/>
+                    <TextBlock Text="{Binding Email}"
+                               FontSize="16"
+                               FontFamily="Roboto Medium"
+                               Margin="5 0"/>
+                    <TextBlock Text="{Binding PhoneNumber}"
+                               FontSize="16"
+                               FontFamily="Roboto Medium"
+                               Margin="5"/>
+                </StackPanel>
+                <Button x:Name="settings"
+                        Style="{StaticResource MaterialDesignIconButton}"
+                        VerticalAlignment="Bottom"
+                        Click="btnSettings_Click"
+                        Margin="228 0 10 215"
+                        Grid.Column="1">
+                    <materialDesign:PackIcon Kind="Settings"
+                             Foreground="Gray"/>
+                </Button>
+                <DataGrid x:Name="userSchedualDataGrid"
+                          Grid.Row="1"
+                          Grid.ColumnSpan="2"
+                          Background="#ebddff"
+                          BorderBrush="#e9def8"
+                          AutoGenerateColumns="False"
+                          Margin="0,0,10,0"
+                          Style="{StaticResource MaterialDesignDataGrid}">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="День недели"/>
+                        <DataGridTextColumn Header="№ Урока"/>
+                        <DataGridTextColumn Header="Класс"/>
+                        <DataGridTextColumn Header="Предмет"/>
+                        <DataGridTextColumn Header="Номер кабинета"/>
+                        <DataGridTextColumn Header="Смена"/>
+                    </DataGrid.Columns>
+                </DataGrid>
             </Grid>
         </Border>
     </Grid>
