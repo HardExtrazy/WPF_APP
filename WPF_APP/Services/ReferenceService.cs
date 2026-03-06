@@ -28,7 +28,7 @@ namespace WPF_APP.Services
         {
             try
             {
-                var response = await _httpClient.GetAsync("api/Reference/register-data");
+                var response = await _httpClient.GetAsync("Reference/register-data");
 
                 if (response.IsSuccessStatusCode)
                 {
@@ -54,7 +54,7 @@ namespace WPF_APP.Services
         {
             try
             {
-                var response = await _httpClient.GetAsync("api/Reference/educations");
+                var response = await _httpClient.GetAsync("Reference/educations");
 
                 if (response.IsSuccessStatusCode)
                 {
@@ -80,7 +80,7 @@ namespace WPF_APP.Services
         {
             try
             {
-                var response = await _httpClient.GetAsync("api/Reference/roles");
+                var response = await _httpClient.GetAsync("Reference/roles");
 
                 if (response.IsSuccessStatusCode)
                 {

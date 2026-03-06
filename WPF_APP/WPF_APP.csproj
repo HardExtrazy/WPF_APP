@@ -129,14 +129,32 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AddTeachers.xaml.cs">
+      <DependentUpon>AddTeachers.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Commands\RelayCommand.cs" />
     <Compile Include="CustomMessageBox.xaml.cs">
       <DependentUpon>CustomMessageBox.xaml</DependentUpon>
     </Compile>
+    <Compile Include="LessonHours.xaml.cs">
+      <DependentUpon>LessonHours.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AssignedLesson.cs" />
+    <Compile Include="Models\Class.cs" />
+    <Compile Include="Models\GeneratedLessonInfo.cs" />
+    <Compile Include="Models\LessonGenerationResult.cs" />
     <Compile Include="Models\LoginResponse.cs" />
     <Compile Include="Models\RegisterRequest.cs" />
     <Compile Include="Models\RegisterResponse.cs" />
+    <Compile Include="Models\StudyLoad.cs" />
+    <Compile Include="Models\StudyLoadSave.cs" />
+    <Compile Include="Models\Subject.cs" />
+    <Compile Include="Models\SubjectDistributionResult.cs" />
+    <Compile Include="Models\SubjectHours.cs" />
     <Compile Include="Models\Teacher.cs" />
+    <Compile Include="Models\TeacherLoad.cs" />
+    <Compile Include="Models\TeacherLoadModel.cs" />
+    <Compile Include="Models\TeacherSubject.cs" />
     <Compile Include="Models\UserResponse.cs" />
     <Compile Include="RecoverAccount.xaml.cs">
       <DependentUpon>RecoverAccount.xaml</DependentUpon>
@@ -145,15 +163,21 @@
       <DependentUpon>RegistrationForm.xaml</DependentUpon>
     </Compile>
     <Compile Include="Services\AuthService.cs" />
+    <Compile Include="Services\LessonGenerationService.cs" />
+    <Compile Include="Services\LessonService.cs" />
     <Compile Include="Services\ReferenceService.cs" />
     <Compile Include="Services\RegService.cs" />
+    <Compile Include="Services\SubjectService.cs" />
+    <Compile Include="Services\SubjectTeacherService.cs" />
     <Compile Include="Utilities\Btn.cs" />
+    <Compile Include="Utilities\HoursToColorConverter.cs" />
     <Compile Include="Utilities\RelayCommand.cs" />
     <Compile Include="Utilities\ViewModelBase.cs" />
     <Compile Include="ViewModel\BaseVM.cs" />
     <Compile Include="ViewModel\ClassVM.cs" />
     <Compile Include="ViewModel\HelpVM.cs" />
     <Compile Include="ViewModel\HomeVM.cs" />
+    <Compile Include="ViewModel\LessonHoursVM.cs" />
     <Compile Include="ViewModel\LoginVM.cs" />
     <Compile Include="ViewModel\NavigatorVM.cs" />
     <Compile Include="ViewModel\RegistrationVM.cs" />
@@ -181,7 +205,15 @@
     <Compile Include="WorkWindow.xaml.cs">
       <DependentUpon>WorkWindow.xaml</DependentUpon>
     </Compile>
+    <Page Include="AddTeachers.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="CustomMessageBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="LessonHours.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

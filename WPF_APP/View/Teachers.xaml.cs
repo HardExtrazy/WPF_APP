@@ -35,26 +35,12 @@ namespace WPF_APP.View
         }
 
         private async Task LoadTeachers()
-        {
-            try
-            {
-                string token = AuthService.Token;
-
-                if (string.IsNullOrEmpty(token))
-                {
-                    MessageBox.Show("Требуется авторизация", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
-                    return;
-                }
-
+        {          
+                string token = AuthService.Token;      
                 if (_viewModel != null)
                 {
                     await _viewModel.LoadTeachersAsync(token);
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Ошибка: {ex.Message}", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
+                }                       
         }
     }
 }

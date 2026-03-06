@@ -1,0 +1,29 @@
+﻿<Window x:Class="WPF_APP.AddTeachers"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WPF_APP"
+        xmlns:vm="clr-namespace:WPF_APP.ViewModel"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="600" Width="400" 
+        WindowStartupLocation="CenterScreen" 
+        WindowStyle="None" 
+        AllowsTransparency="True" 
+        Background="Transparent" 
+        ResizeMode="NoResize">
+    <Border  CornerRadius="20"
+             BorderThickness="1"
+             Background="#c9c2cd"
+             Margin="10">
+        <Grid>
+            <Border CornerRadius="20"
+             BorderThickness="1"
+             Background="#fdf6fe"
+             Margin="10">
+                
+            </Border>
+        </Grid>
+    </Border>
+</Window>

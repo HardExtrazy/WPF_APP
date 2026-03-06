@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WPF_APP.Services;
+using WPF_APP.ViewModel;
 
 namespace WPF_APP.View
 {
@@ -20,9 +22,24 @@ namespace WPF_APP.View
     /// </summary>
     public partial class Classes : UserControl
     {
+        private ClassVM _viewModel;
         public Classes()
         {
             InitializeComponent();
+            _viewModel = DataContext as ClassVM;
+        }
+
+        private async void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            await LoadClasses();
+        }
+        private async Task LoadClasses()
+        {           
+                string token = AuthService.Token;
+                if (_viewModel != null)
+                {
+                    await _viewModel.LoadClassesAsync(token);
+                }
         }
     }
 }

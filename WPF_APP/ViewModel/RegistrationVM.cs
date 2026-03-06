@@ -3,7 +3,9 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Configuration;
 using System.Linq;
+using System.Net.Http;
 using System.Runtime.CompilerServices;
+using System.Text.Json;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
@@ -283,7 +285,7 @@ namespace WPF_APP.ViewModel
         {
             try
             {
-                var baseUrl = ConfigurationManager.AppSettings["ApiBaseUrl"];
+                var baseUrl = ConfigurationManager.AppSettings["ApiBaseUrl"]+"/";
                 if (string.IsNullOrEmpty(baseUrl))
                 {
                     throw new InvalidOperationException("Не настроен ApiBaseUrl в конфигурации");
@@ -341,7 +343,7 @@ namespace WPF_APP.ViewModel
 
                         Roles = new ObservableCollection<ReferenceItem>
                         {
-                            new ReferenceItem { Id = 1, Name = "Директор" },
+                            new ReferenceItem { Id = 1, Name = "Директор зап" },
                             new ReferenceItem { Id = 2, Name = "Зам. дир. по осн. деят." },
                             new ReferenceItem { Id = 3, Name = "Зам. дир. курир. нач. обр." }
                         };
@@ -403,14 +405,72 @@ namespace WPF_APP.ViewModel
             CurrentStep = 1;
         }
 
+        private async Task<bool> CheckLoginAndEmailAvailabilityAsync()
+        {
+            try
+            {
+                using (var client = new HttpClient())
+                {
+                    client.Timeout = TimeSpan.FromSeconds(10);
+                    var baseUrl = ConfigurationManager.AppSettings["ApiBaseUrl"] + "/";
+
+                    // Проверяем логин
+                    var loginResponse = await client.GetAsync($"{baseUrl}Auth/check-login/{Login}");
+                    if (loginResponse.IsSuccessStatusCode)
+                    {
+                        var loginContent = await loginResponse.Content.ReadAsStringAsync();
+                        var loginResult = JsonSerializer.Deserialize<CheckResponse>(loginContent);
+
+                        if (!loginResult.available)
+                        {
+                            var cusmomWindow = new CustomMessageBox($"Логин уже занят");
+                            cusmomWindow.Show();
+                            return false;
+                        }
+                    }
+
+                    // Проверяем email
+                    var emailResponse = await client.GetAsync($"{baseUrl}Auth/check-email/{Email}");
+                    if (emailResponse.IsSuccessStatusCode)
+                    {
+                        var emailContent = await emailResponse.Content.ReadAsStringAsync();
+                        var emailResult = JsonSerializer.Deserialize<CheckResponse>(emailContent);
+
+                        if (!emailResult.available)
+                        {
+                            var cusmomWindow = new CustomMessageBox($"Email уже используется");
+                            cusmomWindow.Show();
+                            return false;
+                        }
+                    }
+
+                    return true;
+                }
+            }
+            catch (Exception ex)
+            {
+                var cusmomWindow = new CustomMessageBox($"Ошибка проверки: {ex.Message}");
+                cusmomWindow.Show();
+                return false;
+            }
+        }
+
         private async Task RegisterAsync()
         {
             IsRegistering = true;
 
             try
             {
-                string dateOfBirthString = string.Empty;
-     
+                // Сначала проверяем доступность логина и email
+                bool isAvailable = await CheckLoginAndEmailAvailabilityAsync();
+                if (!isAvailable)
+                {
+                    return; // Если логин или email заняты, выходим
+                }
+
+                // Если проверка прошла, продолжаем регистрацию
+                string dateOfBirthString = DateOfBirth?.ToString("yyyy-MM-dd") ?? "";
+
                 var request = new RegisterRequest
                 {
                     Login = Login,
@@ -422,8 +482,8 @@ namespace WPF_APP.ViewModel
                     Surename = string.Empty,
                     PhoneNumber = $"+375{CountryCode}{PhoneNumber}",
                     DateOfBirth = dateOfBirthString,
-                    EducationId = SelectedEducationId, 
-                    RoleId = SelectedRoleId            
+                    EducationId = SelectedEducationId,
+                    RoleId = SelectedRoleId
                 };
 
                 var result = await _regService.RegisterAsync(request);
@@ -436,15 +496,21 @@ namespace WPF_APP.ViewModel
                 }
                 else
                 {
+                    // Здесь могут быть другие ошибки сервера
+                    string errorMessage = result.Message;
+                    if (result.Errors != null && result.Errors.Any())
+                    {
+                        errorMessage += "\n" + string.Join("\n", result.Errors);
+                    }
 
-                    var cusmomWindow = new CustomMessageBox("Сервер недоступен");
+                    var cusmomWindow = new CustomMessageBox($"Ошибка регистрации: {errorMessage}");
                     cusmomWindow.Show();
                 }
             }
             catch (Exception ex)
             {
                 var cusmomWindow = new CustomMessageBox($"Произошла ошибка: {ex.Message}");
-                cusmomWindow.Show();               
+                cusmomWindow.Show();
             }
             finally
             {
@@ -469,6 +535,12 @@ namespace WPF_APP.ViewModel
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        private class CheckResponse
+        {
+            public bool available { get; set; }
+            public string message { get; set; }
         }
     }
 }

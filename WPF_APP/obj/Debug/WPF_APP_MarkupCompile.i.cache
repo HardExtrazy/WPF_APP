@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 A:\Visual_Studio\WPF_APP\WPF_APP\App.xaml
-1272624590
+14212408721
 
-381003215852
+58-327490438
 39600557139
-CustomMessageBox.xaml;MainWindow.xaml;RecoverAccount.xaml;RegistrationForm.xaml;Utilities\DataTemplate.xaml;View\Classes.xaml;View\Help.xaml;View\Home.xaml;View\Schedule.xaml;View\Subjects.xaml;View\Teachers.xaml;WorkWindow.xaml;
+AddTeachers.xaml;CustomMessageBox.xaml;LessonHours.xaml;MainWindow.xaml;RecoverAccount.xaml;RegistrationForm.xaml;Utilities\DataTemplate.xaml;View\Classes.xaml;View\Help.xaml;View\Home.xaml;View\Schedule.xaml;View\Subjects.xaml;View\Teachers.xaml;WorkWindow.xaml;
 
 True
 

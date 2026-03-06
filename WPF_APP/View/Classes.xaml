@@ -34,9 +34,11 @@
                              Padding="5 5 5 5"
                              Margin="5 15"
                              Height="35"
-                             Width="475"/>
+                             Width="475"
+                             Loaded="UserControl_Loaded"/>
                 </StackPanel>
                 <DataGrid x:Name="userSchedualDataGrid"
+                           ItemsSource="{Binding Classes}"
                           Grid.Row="1"
                           Background="#ebddff"
                           BorderBrush="#e9def8"
@@ -44,10 +46,14 @@
                           Margin="0,0,10,0"
                           Style="{StaticResource MaterialDesignDataGrid}">
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header="Класс"/>
-                        <DataGridTextColumn Header="Классный руководитель"/>
-                        <DataGridTextColumn Header="Учебная нагрузка"/>
-                        <DataGridTextColumn Header="Смена"/>
+                        <DataGridTextColumn Header="Класс"
+                                            Binding="{Binding FullClassName}"/>
+                        <DataGridTextColumn Header="Классный руководитель"
+                                            Binding="{Binding Mentor}"/>
+                        <DataGridTextColumn Header="Максимальная чебная нагрузка"
+                                            Binding="{Binding WorkLoad}"/>
+                        <DataGridTextColumn Header="Смена"
+                                            Binding="{Binding Shift}"/>
                     </DataGrid.Columns>
                 </DataGrid>
                 <StackPanel Grid.Row="2"

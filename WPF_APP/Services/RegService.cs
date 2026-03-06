@@ -37,7 +37,7 @@ namespace WPF_APP.Services
                 };
 
                 var response = await _httpClient.PostAsJsonAsync(
-                    "api/Auth/register",
+                    "Auth/register",
                     request,
                     jsonOptions
                 );

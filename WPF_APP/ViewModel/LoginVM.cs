@@ -89,7 +89,7 @@ namespace WPF_APP.ViewModel
             }
             catch (System.Exception ex)
             {
-                var cusmomWindow = new CustomMessageBox($"Проблема сервера: {ex.Message}");
+                var cusmomWindow = new CustomMessageBox($"Ошибка сервера: {ex.Message}");
                 cusmomWindow.Show();
             }
             finally

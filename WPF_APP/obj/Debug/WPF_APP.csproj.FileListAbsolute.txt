@@ -84,3 +84,5 @@ A:\Visual_Studio\WPF_APP\WPF_APP\bin\Debug\System.Text.Encodings.Web.xml
 A:\Visual_Studio\WPF_APP\WPF_APP\bin\Debug\System.Text.Json.xml
 A:\Visual_Studio\WPF_APP\WPF_APP\bin\Debug\System.Net.Http.Json.dll
 A:\Visual_Studio\WPF_APP\WPF_APP\bin\Debug\System.Net.Http.Json.xml
+A:\Visual_Studio\WPF_APP\WPF_APP\obj\Debug\LessonHours.g.cs
+A:\Visual_Studio\WPF_APP\WPF_APP\obj\Debug\LessonHours.baml

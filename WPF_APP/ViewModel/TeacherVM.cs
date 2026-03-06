@@ -15,7 +15,6 @@ namespace WPF_APP.ViewModel
     {
         private readonly HttpClient _httpClient;
         private ObservableCollection<Teacher> _teachers;
-        private string _status = "Готово";
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -24,13 +23,6 @@ namespace WPF_APP.ViewModel
             get => _teachers;
             set => SetField(ref _teachers, value);
         }
-
-        public string Status
-        {
-            get => _status;
-            set => SetField(ref _status, value);
-        }
-
         public TeacherVM()
         {
             _httpClient = new HttpClient();
@@ -46,16 +38,6 @@ namespace WPF_APP.ViewModel
 
         public async Task LoadTeachersAsync(string authToken)
         {
-            if (string.IsNullOrEmpty(authToken))
-            {
-                MessageBox.Show("Требуется авторизация", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
-                return;
-            }
-
-            Status = "Загрузка данных...";
-
-            try
-            {
                 // Очищаем старые заголовки
                 _httpClient.DefaultRequestHeaders.Clear();
 
@@ -92,29 +74,13 @@ namespace WPF_APP.ViewModel
                             }
                         }
                     });
-
-                    Status = $"Загружено {Teachers.Count} учителей";
                 }
                 else
                 {
                     var errorContent = await response.Content.ReadAsStringAsync();
-                    Status = "Ошибка загрузки";
-                    MessageBox.Show($"Ошибка сервера: {response.StatusCode}\n{errorContent}",
-                                   "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                var cusmomWindow = new CustomMessageBox($"Ошибка сервера: {response.StatusCode}\n{errorContent}");
+                cusmomWindow.Show();               
                 }
-            }
-            catch (HttpRequestException ex)
-            {
-                Status = "Ошибка подключения";
-                MessageBox.Show($"Ошибка подключения к серверу: {ex.Message}",
-                               "Ошибка сети", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-            catch (Exception ex)
-            {
-                Status = "Ошибка";
-                MessageBox.Show($"Ошибка: {ex.Message}",
-                               "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
         }
 
         private void SetField<T>(ref T field, T value, [CallerMemberName] string propertyName = null)
