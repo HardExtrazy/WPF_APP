@@ -281,7 +281,7 @@
                             Orientation="Horizontal"
                             VerticalAlignment="Center">
                     <Button x:Name="btnSave"                   
-                            Width="100"
+                            Width="105"
                             Height="40"
                             Margin="0 0 25 0"
                             Style="{StaticResource MaterialDesignRaisedButton}"
@@ -292,7 +292,7 @@
                             FontFamily="Roboto Medium"
                             Click="btnSave_Click"/>
                     <Button x:Name="btnClose"                   
-                            Width="100"
+                            Width="105"
                             Height="40"
                             Margin="0 0 0 0"
                             Style="{StaticResource MaterialDesignRaisedButton}"

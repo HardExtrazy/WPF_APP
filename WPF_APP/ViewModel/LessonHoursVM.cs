@@ -211,11 +211,12 @@ namespace WPF_APP.ViewModel
         }
 
         // Сохранение данных с валидацией
+        // Сохранение данных - всегда полное пересоздание таблицы
         public async Task<bool> SaveDataAsync()
         {
             try
             {
-                // Проверяем ограничения
+                // Проверяем ограничения СанПиН
                 var validationResult = ValidateHours();
                 if (!validationResult.IsValid)
                 {
@@ -226,226 +227,140 @@ namespace WPF_APP.ViewModel
                     return false;
                 }
 
-                // Загружаем текущие данные для сравнения
-                var currentLoads = await _subjectService.GetStudyLoadsAsync();
+                // Собираем ВСЕ текущие данные из UI (даже если они не менялись)
                 var loadsToSave = new List<StudyLoadSave>();
-                var hasChanges = false;
 
                 foreach (var item in SubjectHours)
                 {
                     // 1 класс
                     if (item.Class1Hours.HasValue)
                     {
-                        var current = currentLoads?.FirstOrDefault(l =>
-                            l.SubjectId == item.SubjectId && l.ClassNumber == 1);
-
-                        if (current?.Hours != item.Class1Hours.Value)
+                        loadsToSave.Add(new StudyLoadSave
                         {
-                            loadsToSave.Add(new StudyLoadSave
-                            {
-                                SubjectId = item.SubjectId,
-                                ClassNumber = 1,
-                                Hours = item.Class1Hours.Value
-                            });
-                            hasChanges = true;
-                        }
+                            SubjectId = item.SubjectId,
+                            ClassNumber = 1,
+                            Hours = item.Class1Hours.Value
+                        });
                     }
 
                     // 2 класс
                     if (item.Class2Hours.HasValue)
                     {
-                        var current = currentLoads?.FirstOrDefault(l =>
-                            l.SubjectId == item.SubjectId && l.ClassNumber == 2);
-
-                        if (current?.Hours != item.Class2Hours.Value)
+                        loadsToSave.Add(new StudyLoadSave
                         {
-                            loadsToSave.Add(new StudyLoadSave
-                            {
-                                SubjectId = item.SubjectId,
-                                ClassNumber = 2,
-                                Hours = item.Class2Hours.Value
-                            });
-                            hasChanges = true;
-                        }
+                            SubjectId = item.SubjectId,
+                            ClassNumber = 2,
+                            Hours = item.Class2Hours.Value
+                        });
                     }
 
                     // 3 класс
                     if (item.Class3Hours.HasValue)
                     {
-                        var current = currentLoads?.FirstOrDefault(l =>
-                            l.SubjectId == item.SubjectId && l.ClassNumber == 3);
-
-                        if (current?.Hours != item.Class3Hours.Value)
+                        loadsToSave.Add(new StudyLoadSave
                         {
-                            loadsToSave.Add(new StudyLoadSave
-                            {
-                                SubjectId = item.SubjectId,
-                                ClassNumber = 3,
-                                Hours = item.Class3Hours.Value
-                            });
-                            hasChanges = true;
-                        }
+                            SubjectId = item.SubjectId,
+                            ClassNumber = 3,
+                            Hours = item.Class3Hours.Value
+                        });
                     }
 
                     // 4 класс
                     if (item.Class4Hours.HasValue)
                     {
-                        var current = currentLoads?.FirstOrDefault(l =>
-                            l.SubjectId == item.SubjectId && l.ClassNumber == 4);
-
-                        if (current?.Hours != item.Class4Hours.Value)
+                        loadsToSave.Add(new StudyLoadSave
                         {
-                            loadsToSave.Add(new StudyLoadSave
-                            {
-                                SubjectId = item.SubjectId,
-                                ClassNumber = 4,
-                                Hours = item.Class4Hours.Value
-                            });
-                            hasChanges = true;
-                        }
+                            SubjectId = item.SubjectId,
+                            ClassNumber = 4,
+                            Hours = item.Class4Hours.Value
+                        });
                     }
 
                     // 5 класс
                     if (item.Class5Hours.HasValue)
                     {
-                        var current = currentLoads?.FirstOrDefault(l =>
-                            l.SubjectId == item.SubjectId && l.ClassNumber == 5);
-
-                        if (current?.Hours != item.Class5Hours.Value)
+                        loadsToSave.Add(new StudyLoadSave
                         {
-                            loadsToSave.Add(new StudyLoadSave
-                            {
-                                SubjectId = item.SubjectId,
-                                ClassNumber = 5,
-                                Hours = item.Class5Hours.Value
-                            });
-                            hasChanges = true;
-                        }
+                            SubjectId = item.SubjectId,
+                            ClassNumber = 5,
+                            Hours = item.Class5Hours.Value
+                        });
                     }
 
                     // 6 класс
                     if (item.Class6Hours.HasValue)
                     {
-                        var current = currentLoads?.FirstOrDefault(l =>
-                            l.SubjectId == item.SubjectId && l.ClassNumber == 6);
-
-                        if (current?.Hours != item.Class6Hours.Value)
+                        loadsToSave.Add(new StudyLoadSave
                         {
-                            loadsToSave.Add(new StudyLoadSave
-                            {
-                                SubjectId = item.SubjectId,
-                                ClassNumber = 6,
-                                Hours = item.Class6Hours.Value
-                            });
-                            hasChanges = true;
-                        }
+                            SubjectId = item.SubjectId,
+                            ClassNumber = 6,
+                            Hours = item.Class6Hours.Value
+                        });
                     }
 
                     // 7 класс
                     if (item.Class7Hours.HasValue)
                     {
-                        var current = currentLoads?.FirstOrDefault(l =>
-                            l.SubjectId == item.SubjectId && l.ClassNumber == 7);
-
-                        if (current?.Hours != item.Class7Hours.Value)
+                        loadsToSave.Add(new StudyLoadSave
                         {
-                            loadsToSave.Add(new StudyLoadSave
-                            {
-                                SubjectId = item.SubjectId,
-                                ClassNumber = 7,
-                                Hours = item.Class7Hours.Value
-                            });
-                            hasChanges = true;
-                        }
+                            SubjectId = item.SubjectId,
+                            ClassNumber = 7,
+                            Hours = item.Class7Hours.Value
+                        });
                     }
 
                     // 8 класс
                     if (item.Class8Hours.HasValue)
                     {
-                        var current = currentLoads?.FirstOrDefault(l =>
-                            l.SubjectId == item.SubjectId && l.ClassNumber == 8);
-
-                        if (current?.Hours != item.Class8Hours.Value)
+                        loadsToSave.Add(new StudyLoadSave
                         {
-                            loadsToSave.Add(new StudyLoadSave
-                            {
-                                SubjectId = item.SubjectId,
-                                ClassNumber = 8,
-                                Hours = item.Class8Hours.Value
-                            });
-                            hasChanges = true;
-                        }
+                            SubjectId = item.SubjectId,
+                            ClassNumber = 8,
+                            Hours = item.Class8Hours.Value
+                        });
                     }
 
                     // 9 класс
                     if (item.Class9Hours.HasValue)
                     {
-                        var current = currentLoads?.FirstOrDefault(l =>
-                            l.SubjectId == item.SubjectId && l.ClassNumber == 9);
-
-                        if (current?.Hours != item.Class9Hours.Value)
+                        loadsToSave.Add(new StudyLoadSave
                         {
-                            loadsToSave.Add(new StudyLoadSave
-                            {
-                                SubjectId = item.SubjectId,
-                                ClassNumber = 9,
-                                Hours = item.Class9Hours.Value
-                            });
-                            hasChanges = true;
-                        }
+                            SubjectId = item.SubjectId,
+                            ClassNumber = 9,
+                            Hours = item.Class9Hours.Value
+                        });
                     }
 
                     // 10 класс
                     if (item.Class10Hours.HasValue)
                     {
-                        var current = currentLoads?.FirstOrDefault(l =>
-                            l.SubjectId == item.SubjectId && l.ClassNumber == 10);
-
-                        if (current?.Hours != item.Class10Hours.Value)
+                        loadsToSave.Add(new StudyLoadSave
                         {
-                            loadsToSave.Add(new StudyLoadSave
-                            {
-                                SubjectId = item.SubjectId,
-                                ClassNumber = 10,
-                                Hours = item.Class10Hours.Value
-                            });
-                            hasChanges = true;
-                        }
+                            SubjectId = item.SubjectId,
+                            ClassNumber = 10,
+                            Hours = item.Class10Hours.Value
+                        });
                     }
 
                     // 11 класс
                     if (item.Class11Hours.HasValue)
                     {
-                        var current = currentLoads?.FirstOrDefault(l =>
-                            l.SubjectId == item.SubjectId && l.ClassNumber == 11);
-
-                        if (current?.Hours != item.Class11Hours.Value)
+                        loadsToSave.Add(new StudyLoadSave
                         {
-                            loadsToSave.Add(new StudyLoadSave
-                            {
-                                SubjectId = item.SubjectId,
-                                ClassNumber = 11,
-                                Hours = item.Class11Hours.Value
-                            });
-                            hasChanges = true;
-                        }
+                            SubjectId = item.SubjectId,
+                            ClassNumber = 11,
+                            Hours = item.Class11Hours.Value
+                        });
                     }
                 }
 
-                // Если нет изменений - выходим без сохранения
-                if (!hasChanges)
-                {
-                    MessageBox.Show("Нет изменений для сохранения", "Информация");
-                    return true;
-                }
-
-                // Сохраняем только измененные данные
+                // Отправляем все данные на сервер для полного пересоздания таблицы
                 var result = await _subjectService.SaveStudyLoadsAsync(loadsToSave);
 
                 if (result)
                 {
                     MessageBox.Show("Данные успешно сохранены", "Успех");
-                    LoadData(); // Перезагружаем данные
+                    LoadData(); // Перезагружаем данные для синхронизации
                 }
 
                 return result;

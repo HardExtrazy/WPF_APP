@@ -129,6 +129,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AddClass.xaml.cs">
+      <DependentUpon>AddClass.xaml</DependentUpon>
+    </Compile>
     <Compile Include="AddTeachers.xaml.cs">
       <DependentUpon>AddTeachers.xaml</DependentUpon>
     </Compile>
@@ -141,19 +144,31 @@
     </Compile>
     <Compile Include="Models\AssignedLesson.cs" />
     <Compile Include="Models\Class.cs" />
+    <Compile Include="Models\ClassResponse.cs" />
+    <Compile Include="Models\Dto\ClassCreateDto.cs" />
+    <Compile Include="Models\Dto\ClassResponseDto.cs" />
+    <Compile Include="Models\Dto\TeacherCreateDto.cs" />
+    <Compile Include="Models\Education.cs" />
     <Compile Include="Models\GeneratedLessonInfo.cs" />
     <Compile Include="Models\LessonGenerationResult.cs" />
+    <Compile Include="Models\LetterItem.cs" />
     <Compile Include="Models\LoginResponse.cs" />
+    <Compile Include="Models\MentorItem.cs" />
+    <Compile Include="Models\NumberItem.cs" />
     <Compile Include="Models\RegisterRequest.cs" />
     <Compile Include="Models\RegisterResponse.cs" />
+    <Compile Include="Models\Role.cs" />
     <Compile Include="Models\StudyLoad.cs" />
     <Compile Include="Models\StudyLoadSave.cs" />
     <Compile Include="Models\Subject.cs" />
+    <Compile Include="Models\SubjectCheckBox.cs" />
     <Compile Include="Models\SubjectDistributionResult.cs" />
     <Compile Include="Models\SubjectHours.cs" />
+    <Compile Include="Models\SubjectReference.cs" />
     <Compile Include="Models\Teacher.cs" />
     <Compile Include="Models\TeacherLoad.cs" />
     <Compile Include="Models\TeacherLoadModel.cs" />
+    <Compile Include="Models\TeacherResponse.cs" />
     <Compile Include="Models\TeacherSubject.cs" />
     <Compile Include="Models\UserResponse.cs" />
     <Compile Include="RecoverAccount.xaml.cs">
@@ -163,16 +178,20 @@
       <DependentUpon>RegistrationForm.xaml</DependentUpon>
     </Compile>
     <Compile Include="Services\AuthService.cs" />
+    <Compile Include="Services\ClassesService.cs" />
     <Compile Include="Services\LessonGenerationService.cs" />
     <Compile Include="Services\LessonService.cs" />
     <Compile Include="Services\ReferenceService.cs" />
     <Compile Include="Services\RegService.cs" />
     <Compile Include="Services\SubjectService.cs" />
     <Compile Include="Services\SubjectTeacherService.cs" />
+    <Compile Include="Services\TeachersService.cs" />
     <Compile Include="Utilities\Btn.cs" />
     <Compile Include="Utilities\HoursToColorConverter.cs" />
     <Compile Include="Utilities\RelayCommand.cs" />
     <Compile Include="Utilities\ViewModelBase.cs" />
+    <Compile Include="ViewModel\AddClassVM.cs" />
+    <Compile Include="ViewModel\AddTeacherVM.cs" />
     <Compile Include="ViewModel\BaseVM.cs" />
     <Compile Include="ViewModel\ClassVM.cs" />
     <Compile Include="ViewModel\HelpVM.cs" />
@@ -205,6 +224,10 @@
     <Compile Include="WorkWindow.xaml.cs">
       <DependentUpon>WorkWindow.xaml</DependentUpon>
     </Compile>
+    <Page Include="AddClass.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="AddTeachers.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

@@ -7,22 +7,215 @@
         xmlns:local="clr-namespace:WPF_APP"
         xmlns:vm="clr-namespace:WPF_APP.ViewModel"
         mc:Ignorable="d"
-        Title="MainWindow" Height="600" Width="400" 
+        Title="Добавление учителя" 
+        Height="800" Width="650" 
         WindowStartupLocation="CenterScreen" 
         WindowStyle="None" 
         AllowsTransparency="True" 
         Background="Transparent" 
-        ResizeMode="NoResize">
-    <Border  CornerRadius="20"
-             BorderThickness="1"
-             Background="#c9c2cd"
-             Margin="10">
+        ResizeMode="NoResize"
+        MouseDown="Window_MouseDown">
+
+    <Window.DataContext>
+        <vm:AddTeacherVM />
+    </Window.DataContext>
+
+    <Border CornerRadius="20"
+            BorderThickness="1"
+            Background="#c9c2cd"
+            Margin="10">
         <Grid>
             <Border CornerRadius="20"
-             BorderThickness="1"
-             Background="#fdf6fe"
-             Margin="10">
-                
+                    BorderThickness="1"
+                    Background="#fdf6fe"
+                    Margin="10">
+                <ScrollViewer VerticalScrollBarVisibility="Auto">
+                    <StackPanel Margin="25,25,25,10">
+                        <TextBlock Text="Добавить учителя"
+                                   FontFamily="Segoe Print"
+                                   FontSize="16"
+                                   FontWeight="Bold"
+                                   HorizontalAlignment="Center"
+                                   Margin="0 0 0 15"/>
+
+                        <!-- Статус сообщение -->
+                        <TextBlock Text="{Binding StatusMessage}"
+                                   Foreground="Gray"
+                                   FontSize="12"
+                                   HorizontalAlignment="Center"
+                                   Margin="0 0 0 10"/>
+
+                        <!-- Поле Имя (обязательное) -->
+                        <StackPanel Orientation="Horizontal" Width="300" HorizontalAlignment="Center">
+                            <TextBox Text="{Binding FirstName, UpdateSourceTrigger=PropertyChanged}"
+                                     Width="280"
+                                     Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                                     materialDesign:TextFieldAssist.LeadingIcon="User"                                    
+                                     materialDesign:HintAssist.Hint="Имя учителя *"
+                                     materialDesign:HintAssist.FontFamily="Arial"
+                                     materialDesign:TextFieldAssist.HasLeadingIcon="True"                                             
+                                     Background="#ebddff"
+                                     BorderBrush="#e9def8"                                                                                                                                                                                                                                                                                          
+                                     Padding="5 5 5 5"
+                                     Margin="10 5 0 10"/>
+                        </StackPanel>
+
+                        <!-- Поле Фамилия (обязательное) -->
+                        <StackPanel Orientation="Horizontal" Width="300" HorizontalAlignment="Center">
+                            <TextBox Text="{Binding LastName, UpdateSourceTrigger=PropertyChanged}"
+                                     Width="280"
+                                     Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                                     materialDesign:TextFieldAssist.LeadingIcon="User"                                    
+                                     materialDesign:HintAssist.Hint="Фамилия учителя *"
+                                     materialDesign:HintAssist.FontFamily="Arial"
+                                     materialDesign:TextFieldAssist.HasLeadingIcon="True"                                             
+                                     Background="#ebddff"
+                                     BorderBrush="#e9def8"                                                                                                                                                                                                                                                                                          
+                                     Padding="5 5 5 5"
+                                     Margin="10 5 0 10"/>
+                        </StackPanel>
+
+                        <!-- Поле Отчество (опционально) -->
+                        <StackPanel Orientation="Horizontal" Width="300" HorizontalAlignment="Center">
+                            <TextBox Text="{Binding Surename}"
+                                     Width="280"
+                                     Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                                     materialDesign:TextFieldAssist.LeadingIcon="User"                                    
+                                     materialDesign:HintAssist.Hint="Отчество учителя"
+                                     materialDesign:HintAssist.FontFamily="Arial"
+                                     materialDesign:TextFieldAssist.HasLeadingIcon="True"                                             
+                                     Background="#ebddff"
+                                     BorderBrush="#e9def8"                                                                                                                                                                                                                                                                                          
+                                     Padding="5 5 5 5"
+                                     Margin="10 5 0 10"/>
+                        </StackPanel>
+
+                        <!-- Дата рождения (обязательная) -->
+                        <StackPanel Orientation="Horizontal" Width="300" HorizontalAlignment="Center">
+                            <Border Background="#ebddff"
+                                    BorderBrush="#e9def8"                                            
+                                    CornerRadius="4"
+                                    Margin="10 5 0 10">
+                                <DatePicker SelectedDate="{Binding DateOfBirth}"
+                                            Width="280"
+                                            Language="ru-RU"
+                                            Style="{StaticResource MaterialDesignOutlinedDatePicker}"
+                                            materialDesign:TextFieldAssist.LeadingIcon="DateRange"
+                                            materialDesign:HintAssist.Hint="Дата рождения *"
+                                            materialDesign:HintAssist.FontFamily="Arial"                           
+                                            materialDesign:TextFieldAssist.HasLeadingIcon="True"                                            
+                                            BorderBrush="#e9def8"                                                                                                                                                                                                                                                                                         
+                                            Padding="5 5 5 5">
+                                </DatePicker>
+                            </Border>
+                        </StackPanel>
+
+                        <!-- Образование (обязательное) -->
+                        <StackPanel Orientation="Horizontal" Width="300" HorizontalAlignment="Center">
+                            <ComboBox ItemsSource="{Binding Educations}"
+                                      SelectedItem="{Binding SelectedEducation}"
+                                      DisplayMemberPath="Name"
+                                      Width="280"
+                                      Style="{StaticResource MaterialDesignOutlinedComboBox}"
+                                      materialDesign:TextFieldAssist.LeadingIcon="Book"
+                                      materialDesign:HintAssist.Hint="Образование *"
+                                      materialDesign:HintAssist.FontFamily="Arial"                           
+                                      materialDesign:TextFieldAssist.HasLeadingIcon="True"
+                                      Background="#ebddff"
+                                      BorderBrush="#e9def8"                                                                                                                                                                                                                                                                                          
+                                      Padding="5 5 5 5"
+                                      Margin="10 5 0 10"/>
+                        </StackPanel>
+
+                        <!-- Должность (обязательная) -->
+                        <StackPanel Orientation="Horizontal" Width="300" HorizontalAlignment="Center">
+                            <ComboBox ItemsSource="{Binding Roles}"
+                                      SelectedItem="{Binding SelectedRole}"
+                                      DisplayMemberPath="Name"
+                                      Width="280"
+                                      Style="{StaticResource MaterialDesignOutlinedComboBox}"
+                                      materialDesign:TextFieldAssist.LeadingIcon="HatFedora"
+                                      materialDesign:HintAssist.Hint="Должность *"
+                                      materialDesign:HintAssist.FontFamily="Arial"                           
+                                      materialDesign:TextFieldAssist.HasLeadingIcon="True"
+                                      Background="#ebddff"
+                                      BorderBrush="#e9def8"                                                                                                                                                                                                                                                                                          
+                                      Padding="5 5 5 5"
+                                      Margin="10 5 0 10"/>
+                        </StackPanel>
+
+                        <!-- Предметы -->
+                        <Border Background="#ebddff"
+        BorderBrush="#e9def8"
+        CornerRadius="8"
+        Padding="15"
+        Margin="10 10 10 0">
+                            <StackPanel>
+                                <TextBlock Text="Предметы"
+                   FontWeight="Bold"
+                   FontSize="14"
+                   Margin="0 0 0 15"
+                   HorizontalAlignment="Center"/>
+
+                                <ItemsControl ItemsSource="{Binding SubjectCheckBoxes}">
+                                    <ItemsControl.ItemsPanel>
+                                        <ItemsPanelTemplate>
+                                            <WrapPanel Orientation="Horizontal" 
+                               HorizontalAlignment="Center"
+                               ItemWidth="130"/>
+                                        </ItemsPanelTemplate>
+                                    </ItemsControl.ItemsPanel>
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate>
+                                            <CheckBox Content="{Binding DisplayName}"
+                              IsChecked="{Binding IsChecked}"
+                              IsEnabled="{Binding IsEnabled}"
+                              Style="{StaticResource MaterialDesignCheckBox}"
+                              materialDesign:HintAssist.FontFamily="Arial"
+                              Margin="5"
+                              HorizontalAlignment="Left"
+                              VerticalAlignment="Center"/>
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                </ItemsControl>
+                            </StackPanel>
+                        </Border>
+
+                        <!-- Кнопки -->
+                        <StackPanel Orientation="Horizontal" 
+                                    HorizontalAlignment="Center"
+                                    Margin="0 20 0 10">
+
+                            <!-- Кнопка "Назад" -->
+                            <Button x:Name="btnBack"
+                                    Width="100"
+                                    Height="40"
+                                    Style="{StaticResource MaterialDesignRaisedButton}"
+                                    materialDesign:ButtonAssist.CornerRadius="15"
+                                    Foreground="#fdf6fe" 
+                                    ToolTip="Вернуться назад"
+                                    Command="{Binding CloseCommand}"
+                                    CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=Window}}"
+                                    Content="Назад"
+                                    FontFamily="Roboto Medium"
+                                    Margin="5"/>
+
+                            <!-- Кнопка "Создать" -->
+                            <Button x:Name="btnCreate"
+                                    Width="100"
+                                    Height="40"
+                                    Style="{StaticResource MaterialDesignRaisedButton}"
+                                    materialDesign:ButtonAssist.CornerRadius="15"
+                                    Foreground="#fdf6fe" 
+                                    ToolTip="Создать учителя"
+                                    Command="{Binding CreateTeacherCommand}"
+                                    Content="Создать"
+                                    FontFamily="Roboto Medium"
+                                    IsEnabled="{Binding IsCreateButtonEnabled}"
+                                    Margin="5"/>
+                        </StackPanel>
+                    </StackPanel>
+                </ScrollViewer>
             </Border>
         </Grid>
     </Border>

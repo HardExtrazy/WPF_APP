@@ -56,7 +56,7 @@ namespace WPF_APP.View
 
             await _viewModel.GenerateFullSchedule();
 
-            btnGenerateAll.Content = "Генерировать всё";
+            btnGenerateAll.Content = "Генерировать";
             btnGenerateAll.IsEnabled = true;
         }
 

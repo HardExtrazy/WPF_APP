@@ -42,5 +42,21 @@ namespace WPF_APP.View
                     await _viewModel.LoadTeachersAsync(token);
                 }                       
         }
+
+        private void btnAdd_Click(object sender, RoutedEventArgs e)
+        {
+            var addTeacher = new AddTeachers();
+            addTeacher.ShowDialog();
+        }
+
+        private void search_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (_viewModel != null)
+            {
+                var textBox = sender as TextBox;
+                _viewModel.SearchText = textBox?.Text ?? string.Empty;
+            }
+        }
+
     }
 }

@@ -1,7 +1,9 @@
 ﻿using System;
-using System.Collections.ObjectModel;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using System.Windows;
 using WPF_APP.Models;
@@ -12,11 +14,13 @@ namespace WPF_APP.ViewModel
     /// <summary>
     /// ViewModel для окна Subjects (список уроков и генерация)
     /// </summary>
-    public class SubjectVM
+    public class SubjectVM : INotifyPropertyChanged
     {
         private readonly LessonService _lessonService;
         private readonly LessonGenerationService _generationService;
         private readonly SubjectTeacherService _subjectTeacherService;
+        private List<TeacherLoadModel> _allTeacherLoads;
+        private string _searchText;
 
         /// <summary>
         /// Коллекция для отображения в DataGrid
@@ -32,6 +36,16 @@ namespace WPF_APP.ViewModel
         /// Флаг выполнения генерации
         /// </summary>
         private bool _isGenerating;
+        public string SearchText
+        {
+            get => _searchText;
+            set
+            {
+                _searchText = value;
+                OnPropertyChanged();
+                ApplyFilter();  // Фильтруем только DataGrid
+            }
+        }
 
         public SubjectVM()
         {
@@ -55,17 +69,17 @@ namespace WPF_APP.ViewModel
             {
                 var loads = await _lessonService.GetTeacherLoadsAsync();
 
-                TeacherLoads.Clear();
+                // Сохраняем оригинальные данные
+                _allTeacherLoads = loads.ToList();
 
-                foreach (var load in loads)
-                {
-                    TeacherLoads.Add(load);
-                }
+                // Применяем фильтр (если есть текст поиска)
+                ApplyFilter();
 
+                // Лог НЕ трогаем, просто добавляем сообщение
                 LogMessages.Add($"✅ Данные обновлены: {DateTime.Now:HH:mm:ss}");
-                LogMessages.Add($"📊 Загружено записей: {TeacherLoads.Count}");
+                LogMessages.Add($"📊 Загружено записей: {_allTeacherLoads.Count}");
 
-                ShowTeacherSummary();
+                ShowTeacherSummary(); // Этот метод добавляет сообщения в лог
             }
             catch (Exception ex)
             {
@@ -107,7 +121,7 @@ namespace WPF_APP.ViewModel
                 }
 
                 LogMessages.Add($"📈 Всего учителей: {teacherSummary.Count}");
-                LogMessages.Add($"📚 Всего предметов: {TeacherLoads.Count}");
+                LogMessages.Add($"📚 Всего уроков: {TeacherLoads.Count}");
                 LogMessages.Add($"━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
             }
         }
@@ -291,13 +305,10 @@ namespace WPF_APP.ViewModel
             {
                 var loads = await _lessonService.GetTeacherLoadsAsync();
 
-                TeacherLoads.Clear();
+                _allTeacherLoads = loads.ToList();
+                ApplyFilter();  // Применяем фильтр
 
-                foreach (var load in loads)
-                {
-                    TeacherLoads.Add(load);
-                }
-
+                // Только одно сообщение в лог
                 LogMessages.Add($"✅ Данные обновлены после генерации: {DateTime.Now:HH:mm:ss}");
             }
             catch (Exception ex)
@@ -313,6 +324,42 @@ namespace WPF_APP.ViewModel
         {
             LogMessages.Clear();
             LogMessages.Add("🧹 Лог очищен");
+        }
+
+        private void ApplyFilter()
+        {
+            TeacherLoads.Clear();
+
+            if (string.IsNullOrWhiteSpace(SearchText))
+            {
+                // Показываем все записи
+                foreach (var load in _allTeacherLoads)
+                {
+                    TeacherLoads.Add(load);
+                }
+            }
+            else
+            {
+                // Фильтруем записи
+                var filtered = _allTeacherLoads.Where(item =>
+                    item.ClassName?.IndexOf(SearchText, StringComparison.OrdinalIgnoreCase) >= 0 ||
+                    item.TeacherName?.IndexOf(SearchText, StringComparison.OrdinalIgnoreCase) >= 0 ||
+                    item.SubjectName?.IndexOf(SearchText, StringComparison.OrdinalIgnoreCase) >= 0 ||
+                    (item.Subgroup?.ToString()?.IndexOf(SearchText, StringComparison.OrdinalIgnoreCase) >= 0) ||
+                    item.WeeklyHours.ToString().IndexOf(SearchText, StringComparison.OrdinalIgnoreCase) >= 0
+                ).ToList();
+
+                foreach (var load in filtered)
+                {
+                    TeacherLoads.Add(load);
+                }
+            }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

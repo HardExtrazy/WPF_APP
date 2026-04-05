@@ -6,24 +6,32 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:vm="clr-namespace:WPF_APP.ViewModel"
              mc:Ignorable="d" 
-             d:DesignHeight="600"
-             d:DesignWidth="622">
+             d:DesignHeight="900"
+             d:DesignWidth="933">
+
     <UserControl.DataContext>
         <vm:TeacherVM/>
     </UserControl.DataContext>
+
     <Grid Margin="15">
-        <Border CornerRadius="0 20 20 0"
-                Background="#fdf6fe">
+        <Border CornerRadius="0 20 20 0" Background="#fdf6fe">
             <Grid Margin="10">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height ="*"/>
-                    <RowDefinition Height ="400"/>
-                    <RowDefinition Height="70"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
-                <StackPanel Grid.Row="0">
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <!-- Поиск -->
+                <StackPanel Grid.Row="0" Grid.Column="0">
                     <TextBox x:Name="search"
+                             Visibility="Visible"
                              VerticalAlignment="Center"
-                             Style = "{StaticResource MaterialDesignOutlinedTextBox}"
+                             Style="{StaticResource MaterialDesignOutlinedTextBox}"
                              materialDesign:TextFieldAssist.LeadingIcon="Search"
                              materialDesign:HintAssist.Hint="Поиск"
                              materialDesign:HintAssist.HintPaddingBrush="#fdf6fe"
@@ -31,36 +39,45 @@
                              materialDesign:TextFieldAssist.HasLeadingIcon="True"
                              Background="#ebddff"
                              BorderBrush="#e9def8"
-                             Padding="5 5 5 5"
-                             Margin="5 15"
+                             Padding="5"
+                             Margin="5,15"
                              Height="35"
-                             Width="475"
-                             Loaded="UserControl_Loaded"/>
+                             Width="640"
+                             Loaded="UserControl_Loaded"
+                             TextChanged="search_TextChanged"/>
                 </StackPanel>
                 <DataGrid x:Name="userSchedualDataGrid"
-                          ItemsSource="{Binding Teachers}"
                           Grid.Row="1"
+                          Grid.Column="0"
+                          ItemsSource="{Binding Teachers}"
+                          SelectedItem="{Binding SelectedTeacher, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                           Background="#ebddff"
                           BorderBrush="#e9def8"
                           AutoGenerateColumns="False"
-                          Margin="0,0,10,0"
-                          Style="{StaticResource MaterialDesignDataGrid}">
+                          Margin="0,10,0,10"
+                          HorizontalAlignment="Stretch"
+                          VerticalAlignment="Stretch"
+                          Style="{StaticResource MaterialDesignDataGrid}"
+                          SelectionMode="Single">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="Фамилия"
                                             Binding="{Binding LastName}"
-                                            Width="100"/>
+                                            Width="*"/>
                         <DataGridTextColumn Header="Имя"
                                             Binding="{Binding FirstName}"
-                                            Width="100"/>
+                                            Width="*"/>
                         <DataGridTextColumn Header="Отчество"
                                             Binding="{Binding Surename}"
-                                            Width="100"/>
+                                            Width="*"/>
                         <DataGridTextColumn Header="Преподаваемые предметы"
                                             Binding="{Binding Subjects}" 
-                                            Width="*"/>
+                                            Width="Auto"/>
                     </DataGrid.Columns>
                 </DataGrid>
+
+                <!-- Кнопки -->
                 <StackPanel Grid.Row="2"
+                            Grid.Column="0"
                             VerticalAlignment="Top"
                             HorizontalAlignment="Center"
                             Orientation="Horizontal"
@@ -73,7 +90,8 @@
                             FontFamily="Roboto Medium"
                             Style="{StaticResource MaterialDesignRaisedButton}"
                             materialDesign:ButtonAssist.CornerRadius="15"                              
-                            Foreground="#fdf6fe"                                                                                                                              
+                            Foreground="#fdf6fe"
+                            Click="btnAdd_Click"
                             Margin="10"/>
                     <Button x:Name="btnEdit"
                             Width="100"
@@ -93,7 +111,8 @@
                             FontFamily="Roboto Medium"
                             Style="{StaticResource MaterialDesignRaisedButton}"
                             materialDesign:ButtonAssist.CornerRadius="15"                              
-                            Foreground="#fdf6fe"                                                                                                                              
+                            Foreground="#fdf6fe"
+                            Command="{Binding DeleteCommand}"
                             Margin="10"/>
                 </StackPanel>
             </Grid>

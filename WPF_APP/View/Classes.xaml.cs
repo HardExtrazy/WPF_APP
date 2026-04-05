@@ -1,45 +1,49 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using WPF_APP.Services;
 using WPF_APP.ViewModel;
 
 namespace WPF_APP.View
 {
-    /// <summary>
-    /// Логика взаимодействия для Classes.xaml
-    /// </summary>
     public partial class Classes : UserControl
     {
         private ClassVM _viewModel;
+
         public Classes()
         {
             InitializeComponent();
-            _viewModel = DataContext as ClassVM;
+            this.Loaded += Classes_Loaded;
         }
 
-        private async void UserControl_Loaded(object sender, RoutedEventArgs e)
+        private async void Classes_Loaded(object sender, RoutedEventArgs e)
         {
-            await LoadClasses();
+            _viewModel = (ClassVM)this.DataContext;
+            await _viewModel.LoadClassesAsync();
         }
-        private async Task LoadClasses()
-        {           
-                string token = AuthService.Token;
-                if (_viewModel != null)
-                {
-                    await _viewModel.LoadClassesAsync(token);
-                }
+
+        private void btnAdd_Click(object sender, RoutedEventArgs e)
+        {
+            var addClassWindow = new AddClass();
+            addClassWindow.ShowDialog();
+
+            // Обновляем список после добавления
+            if (_viewModel != null)
+            {
+                _ = _viewModel.LoadClassesAsync();
+            }
         }
+
+        private void search_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (_viewModel != null)
+            {
+                var textBox = sender as TextBox;
+                _viewModel.SearchText = textBox?.Text ?? string.Empty;
+            }
+        }
+
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+          
+        }  
     }
 }

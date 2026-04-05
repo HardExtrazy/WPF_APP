@@ -3,8 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:vm="clr-namespace:WPF_APP.ViewModel"
-             Height="600"
-             Width="622">
+             Height="900"
+             Width="933">
 
     <UserControl.DataContext>
         <vm:SubjectVM/>
@@ -25,7 +25,7 @@
                 <!-- ПОЛЕ ПОИСКА -->
                 <StackPanel Grid.Row="0">
                     <TextBox x:Name="search"
-                             VerticalAlignment="Center"
+                             Visibility="Visible"
                              Style="{StaticResource MaterialDesignOutlinedTextBox}"
                              materialDesign:TextFieldAssist.LeadingIcon="Search"
                              materialDesign:HintAssist.Hint="Поиск по учителю, предмету или классу"
@@ -37,7 +37,7 @@
                              Padding="5"
                              Margin="5 15"
                              Height="35"
-                             Width="500"
+                             Width="640"
                              TextChanged="search_TextChanged"/>
                 </StackPanel>
 
@@ -51,13 +51,13 @@
                           CanUserAddRows="False"
                           CanUserDeleteRows="False"
                           IsReadOnly="True"
-                          Margin="0 0 10 10"
+                          Margin="0,0,10,70"
                           Style="{StaticResource MaterialDesignDataGrid}"
                           GridLinesVisibility="All"
                           HorizontalGridLinesBrush="#CCCCCC"
                           VerticalGridLinesBrush="#CCCCCC"
                           RowHeight="35"
-                          MaxHeight="350">
+                          >
 
                     <DataGrid.Columns>
                         <!-- Колонка "Класс" -->
@@ -88,13 +88,13 @@
                 </DataGrid>
 
                 <!-- ОТЧЕТ -->
-                <Border Grid.Row="2"
+                <Border Grid.Row="1"
                         Background="#f8f9fa"
                         CornerRadius="10"
                         Padding="10"
-                        Margin="0 0 10 10"
+                        Margin="0,500,10,10"
                         BorderBrush="#e9def8"
-                        BorderThickness="1">
+                        BorderThickness="1" Grid.RowSpan="2">
 
                     <Grid>
                         <Grid.RowDefinitions>

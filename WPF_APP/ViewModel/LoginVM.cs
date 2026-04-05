@@ -78,6 +78,10 @@ namespace WPF_APP.ViewModel
 
                 if (result.Success)
                 {
+                    if (!string.IsNullOrEmpty(result.Token))
+                    {
+                        Application.Current.Properties["AuthToken"] = result.Token;
+                    }
                     OnLoginSuccess?.Invoke();
                 }
                 else

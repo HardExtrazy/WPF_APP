@@ -9,8 +9,8 @@
         xmlns:Menu="clr-namespace:WPF_APP.Utilities"
         mc:Ignorable="d"
         Title="WorkWindow"
-        Height="600"
-        Width="850"
+        Height="900"
+        Width="1275"
         WindowStartupLocation="CenterScreen" 
         WindowStyle="None"
         AllowsTransparency="True" 
@@ -183,7 +183,7 @@
                         </Grid>
                         <Grid Grid.Column="1">
                             <ContentControl x:Name="Pages"
-                                            Content="{Binding CurrentView}"/>
+                                            Content="{Binding CurrentView}" Margin="0,0,-400,0"/>
 
                         </Grid>
                     </Grid>

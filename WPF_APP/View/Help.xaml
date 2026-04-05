@@ -6,8 +6,8 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:vm="clr-namespace:WPF_APP.ViewModel"
              mc:Ignorable="d" 
-             d:DesignHeight="600"
-             d:DesignWidth="622">
+             d:DesignHeight="900"
+             d:DesignWidth="933">
     <UserControl.DataContext>
         <vm:HelpVM/>
     </UserControl.DataContext>

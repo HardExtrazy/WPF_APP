@@ -5,6 +5,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows; // Добавьте этот using
 using WPF_APP.Models;
 
 namespace WPF_APP.Services
@@ -45,6 +46,16 @@ namespace WPF_APP.Services
                 {
                     Token = result.Token;
                     CurrentUser = result.User;
+
+                    // СОХРАНЯЕМ ТОКЕН В Application.Current.Properties
+                    Application.Current.Dispatcher.Invoke(() =>
+                    {
+                        Application.Current.Properties["AuthToken"] = result.Token;
+                        if (result.User != null)
+                        {
+                            Application.Current.Properties["CurrentUser"] = result.User;
+                        }
+                    });
                 }
 
                 return result ?? CreateErrorResponse("Неверный формат ответа сервера");
@@ -60,6 +71,28 @@ namespace WPF_APP.Services
                 Token = "",
                 User = new UserInfo()
             };
+        }
+
+        // Добавьте метод для получения токена
+        public static string GetToken()
+        {
+            if (Application.Current.Properties.Contains("AuthToken"))
+            {
+                return Application.Current.Properties["AuthToken"]?.ToString();
+            }
+            return Token;
+        }
+
+        // Добавьте метод для очистки токена (при выходе)
+        public static void ClearToken()
+        {
+            Token = null;
+            CurrentUser = null;
+            Application.Current.Dispatcher.Invoke(() =>
+            {
+                Application.Current.Properties.Remove("AuthToken");
+                Application.Current.Properties.Remove("CurrentUser");
+            });
         }
     }
 }

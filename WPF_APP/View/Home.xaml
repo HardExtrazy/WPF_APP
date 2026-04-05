@@ -6,8 +6,8 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:vm="clr-namespace:WPF_APP.ViewModel"
              mc:Ignorable="d" 
-             d:DesignHeight="600"
-             d:DesignWidth="622"
+             d:DesignHeight="900"
+             d:DesignWidth="933"
              Loaded="UserControl_Loaded">
     <UserControl.DataContext>
         <vm:HomeVM/>
@@ -33,37 +33,37 @@
                     <TextBlock Text="{Binding UserId}"
                                FontSize="16"
                                FontFamily="Roboto Medium"
-                               Margin="5"/>
+                               Margin="5" Width="360"/>
                     <TextBlock Text="{Binding FirstName}"
                                FontSize="16"
                                FontFamily="Roboto Medium"
-                               Margin="5 0"/>
+                               Margin="5 0" Width="360"/>
                     <TextBlock Text="{Binding LastName}"
                                FontSize="16"
                                FontFamily="Roboto Medium"
-                               Margin="5"/>
+                               Margin="5" Width="360"/>
                     <TextBlock Text="{Binding Surename}"
                                FontSize="16"
                                FontFamily="Roboto Medium"
-                               Margin="5 0"/>
+                               Margin="5 0" Width="360"/>
                     <TextBlock Text="{Binding DateOfBirth}"
                                FontSize="16"
                                FontFamily="Roboto Medium"
-                               Margin="5"/>
+                               Margin="5" Width="360"/>
                     <TextBlock Text="{Binding Email}"
                                FontSize="16"
                                FontFamily="Roboto Medium"
-                               Margin="5 0"/>
+                               Margin="5 0" Width="360"/>
                     <TextBlock Text="{Binding PhoneNumber}"
                                FontSize="16"
                                FontFamily="Roboto Medium"
-                               Margin="5"/>
+                               Margin="5" Width="360"/>
                 </StackPanel>
                 <Button x:Name="settings"
                         Style="{StaticResource MaterialDesignIconButton}"
                         VerticalAlignment="Bottom"
                         Click="btnSettings_Click"
-                        Margin="228 0 10 215"
+                        Margin="384,0,10,377"
                         Grid.Column="1">
                     <materialDesign:PackIcon Kind="Settings"
                              Foreground="Gray"/>
